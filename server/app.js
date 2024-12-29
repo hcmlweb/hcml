@@ -44,7 +44,7 @@ app.use('/api/expance', expanceRouter)
 
 
 app.use((req,res,next)=>{ 
-res.send('404 not found')
+res.send('Page Finding')
 })
 
 
