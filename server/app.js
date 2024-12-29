@@ -3,10 +3,11 @@
 
 require('dotenv').config(); 
 const express = require('express')
+const mongoose=require('mongoose')
 const cors=require('cors')
 const app=express()
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
 
@@ -14,10 +15,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(cors({
-  origin:'http://localhost:5173',
-  methods:['GET','POST']
-}));
+app.use(cors());
 
 
 
