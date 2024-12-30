@@ -10,12 +10,11 @@ const [expanseAmount,setExpanseAmount]=useState(0)
 const [isLoading,setIsLoading]=useState(false)
 
 useEffect( ()=>{
+  setIsLoading(true)
   fetch('https://hcml-server.vercel.app/api/expanse')
   .then((res)=>{ return res.json()})
   .then(data=> {setData(data)})
-  
-
-
+  setIsLoading(false)
 },[data,outputDate])
 
 
