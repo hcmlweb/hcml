@@ -34,7 +34,7 @@ mongoose.connect(MONGO_URI, {
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 
-app.use('/',(req,res)=>{
+app.get('/',(req,res)=>{
   res.status(201).send('Welcome to HCML')
 })
 app.use('/api/expanse', expanceRouter)
