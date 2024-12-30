@@ -10,6 +10,9 @@ const app=express()
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
+const expanceRouter = require('./router/expanceRouter')
+const griegeRouter=require('./router/griege.router')
+
 
 
 
@@ -20,7 +23,9 @@ app.use(cors());
 
 
 
-const expanceRouter = require('./router/expanceRouter')
+
+
+
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -29,7 +34,11 @@ mongoose.connect(MONGO_URI, {
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 
+app.use('/',(req,res)=>{
+  res.status(201).send('Welcome to HCML')
+})
 app.use('/api/expanse', expanceRouter)
+app.use('/api/griege', griegeRouter)
 
 
 
