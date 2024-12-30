@@ -10,7 +10,7 @@ const getAllGriege=async (req, res, next)=>{
         else{
             res.status(201).json(getGriege)
         }
-        next()
+       
     } catch (error) {
         res.status(500).json({massage: "interal server error" + error})
     }
@@ -23,7 +23,7 @@ const createGriege= async(req,res,next)=>{
         })
         const saveGriege = await newGriege.save()
         res.status(201).json(saveGriege)
-        next()
+        
     } catch (error) {
         res.status(500).json({massage:"Internal Server Error"})
     }
