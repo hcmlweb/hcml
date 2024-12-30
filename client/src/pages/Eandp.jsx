@@ -31,10 +31,11 @@ const handleSubmit= async (e)=>{
       },
       body: JSON.stringify({expanseName,expanseAmount,date}),
   });
+    setDate('')
+    expanseName('')
+    expanseAmount(0)
   setIsLoading(false)
-  setDate('')
-  expanseName('')
-  expanseAmount(0)
+  
   } catch (error) {
     console.log(error)
   }
