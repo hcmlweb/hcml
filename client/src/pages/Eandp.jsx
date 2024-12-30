@@ -69,15 +69,15 @@ const handleSubmit= async (e)=>{
             <form className='w-full m-auto my-4 p-8 shadow-md flex flex-col space-y-2' onSubmit={handleSubmit}>
             <div>
                   <label>Select A Date</label>
-                  <input type="date" onChange={(e)=>{setDate(e.target.value)}}/>
+                  <input type="date" value={date} onChange={(e)=>{setDate(e.target.value)}}/>
                 </div>
               <div className='w-full grid grid-cols-4'>
                 <label className='col-span -1' htmlFor="">Purpose</label>
-                <input className='col-span-3 focus:outline-none border-[1px] border-gray-400 px-4' type="text" onChange={(e)=>{setExpanseName(e.target.value)}} />
+                <input className='col-span-3 focus:outline-none border-[1px] border-gray-400 px-4' value={expanseName} type="text" onChange={(e)=>{setExpanseName(e.target.value)}} />
               </div>
               <div className='w-full grid grid-cols-4'>
                 <label className='col-span-1' htmlFor="">Amount</label>
-                <input className='col-span-3 focus:outline-none border-[1px] border-gray-400 px-4' type="text" onChange={(e)=>{setExpanseAmount(e.target.value)}}/>
+                <input className='col-span-3 focus:outline-none border-[1px] border-gray-400 px-4' value={expanseAmount} type="text" onChange={(e)=>{setExpanseAmount(e.target.value)}}/>
               </div>
               <button className='uppercase border-[1px] border-blue-500 text-blue-500  px-4 py-[2px] text-xs hover:bg-blue-500 hover:text-white transition-all duration-500'>save</button>
             </form>
