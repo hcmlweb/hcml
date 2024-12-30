@@ -4,10 +4,7 @@ lotNumber:{
     type:Number,
     require:true
 },
-date:{
-    type:date,
-}
-}
-)
+date:Date
+})
 
 module.exports=griegeSchema;
