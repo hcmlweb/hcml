@@ -7,6 +7,7 @@ const [outputDate, setOutputDate]=useState('');
 const [date,setDate]=useState('')
 const [expanseName, setExpanseName]=useState('')
 const [expanseAmount,setExpanseAmount]=useState(0)
+const [isLoading,setIsLoading]=useState(false)
 
 useEffect( ()=>{
   fetch('https://hcml-server.vercel.app/api/expanse')
@@ -22,6 +23,7 @@ useEffect( ()=>{
 const handleSubmit= async (e)=>{
   e.preventDefault();
   try {
+    setIsLoading(true)
     const response = await fetch('https://hcml-server.vercel.app/api/expanse', {
       method: 'POST',
       headers: {
@@ -29,8 +31,12 @@ const handleSubmit= async (e)=>{
       },
       body: JSON.stringify({expanseName,expanseAmount,date}),
   });
+  setIsLoading(false)
+  setDate('')
+  expanseName('')
+  expanseAmount(0)
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
@@ -43,20 +49,20 @@ const handleSubmit= async (e)=>{
             <h2 className='text-2xl'>হারুন কম্পজিট মিলস লিমিটেড</h2>
             <h2 className='text-md'>গোলাকান্দাইল, ভুলতা, রুপগঞ্জ, নারায়ণগঞ্জ</h2>
           </div>
-          <div className='w-full p-8'>
+          {
+            isLoading ? <h2>Loading</h2> : 
+            <div className='w-full p-8'>
             <input type="date" onChange={(e)=>{setOutputDate}}/>
             {data.map(item=>{
-              
                 return(
                   <div key={item._id} className='w-2/3 m-auto grid grid-cols-3 items-center justify-center'>
                     <h2 className='p-1 bg-gray-200 m-1 text-center'>{item.expanseName}</h2>
                     <h2 className='p-1 bg-gray-200 m-1 text-center'>{item.expanseAmount}</h2>
                     <h2 className='p-1 bg-gray-200 m-1 text-center'>{new Date(item.date).toLocaleString()}</h2>
                   </div>)
-                  
-              
             })}
           </div>
+          }
           
           <div className='w-2/3 m-auto'>
             <form className='w-full m-auto my-4 p-8 shadow-md flex flex-col space-y-2' onSubmit={handleSubmit}>
