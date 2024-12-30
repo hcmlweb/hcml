@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Headers from '../components/Headers'
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Eandp() {
 const [data, setData]=useState([]);
@@ -49,7 +50,7 @@ const handleSubmit= async (e)=>{
             <h2 className='text-md'>গোলাকান্দাইল, ভুলতা, রুপগঞ্জ, নারায়ণগঞ্জ</h2>
           </div>
           {
-            isLoading ? <h2>Loading</h2> : 
+            isLoading ? <ClipLoader /> : 
             <div className='w-full p-8'>
             <input type="date" onChange={(e)=>{setOutputDate}}/>
             {data.map(item=>{
