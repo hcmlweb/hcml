@@ -9,7 +9,7 @@ const [expanseName, setExpanseName]=useState('')
 const [expanseAmount,setExpanseAmount]=useState(0)
 
 useEffect( ()=>{
-  fetch('https://hcml-server.vercel.app/api/expance')
+  fetch('https://hcml-server.vercel.app/api/expanse')
   .then((res)=>{ return res.json()})
   .then(data=> {setData(data)})
   
@@ -22,7 +22,7 @@ useEffect( ()=>{
 const handleSubmit= async (e)=>{
   e.preventDefault();
   try {
-    const response = await fetch('https://hcml-server.vercel.app/api/expance', {
+    const response = await fetch('https://hcml-server.vercel.app/api/expanse', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',

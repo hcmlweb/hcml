@@ -36,7 +36,7 @@ mongoose.connect(MONGO_URI, {
 
 
 
-app.use('/api/expance', expanceRouter)
+app.use('/api/expanse', expanceRouter)
 
 
 
