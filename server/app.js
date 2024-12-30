@@ -29,13 +29,6 @@ mongoose.connect(MONGO_URI, {
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 
-
-  app.listen(PORT,()=>{
-      console.log(`Server is running at ${PORT}`)
-  })
-
-
-
 app.use('/api/expanse', expanceRouter)
 
 
@@ -45,5 +38,8 @@ app.use((req,res,next)=>{
 res.send('Page Finding')
 })
 
+app.listen(PORT,()=>{
+  console.log(`Server is running at ${PORT}`)
+})
 
 module.exports=app;
