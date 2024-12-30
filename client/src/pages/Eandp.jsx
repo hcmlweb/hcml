@@ -22,7 +22,7 @@ useEffect( ()=>{
 const handleSubmit= async (e)=>{
   e.preventDefault();
   try {
-    const response = await fetch('http://localhost:4000/api/expance', {
+    const response = await fetch('https://hcml-server.vercel.app/api/expance', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
