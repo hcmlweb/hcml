@@ -9,7 +9,7 @@ const [expanseName, setExpanseName]=useState('')
 const [expanseAmount,setExpanseAmount]=useState(0)
 
 useEffect( ()=>{
-  fetch('http://localhost:4000/api/expance')
+  fetch('https://hcml-server.vercel.app/api/expance')
   .then((res)=>{ return res.json()})
   .then(data=> {setData(data)})
   
