@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const Lot = () => {
     const [data, setData] = useState([])
     const [lot, setLot] = useState([])
@@ -57,14 +58,16 @@ const Lot = () => {
                                 <li className="col-span-1 border-[1px] border-gray-800">Party Name</li>
                                 <li className="col-span-1 border-[1px] border-gray-800">Gaiege Amount</li>
                             </ul>
-
                             {lot.map(item => {
                                 return (
-                                    <ul className="w-full grid grid-cols-3 items-center justify-center text-center">
-                                        <li className="col-span-1 border-[1px] border-gray-800">{item.lotNumber}</li>
-                                        <li className="col-span-1 border-[1px] border-gray-800">{item.partyName}</li>
-                                        <li className="col-span-1 border-[1px] border-gray-800">{item.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
-                                    </ul>
+                                    <Link to={`/lot/${item._id}`} className="w-full">
+                                        <ul  className="w-full grid grid-cols-3 items-center justify-center text-center">
+                                            <li className="col-span-1 border-[1px] border-gray-800">{item.lotNumber}</li>
+                                            <li className="col-span-1 border-[1px] border-gray-800">{item.partyName}</li>
+                                            <li className="col-span-1 border-[1px] border-gray-800">{item.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
+                                        </ul>
+                                    </Link>
+                                    
                                 )
                             })}
                         </div>
