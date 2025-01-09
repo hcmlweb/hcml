@@ -51,7 +51,7 @@ const Lot = () => {
                                 {lot.map(item => {
                                     return (
                                         <Link to={`/lot/${item._id}`} className="w-full">
-                                            <ul  className="w-full grid grid-cols-4 items-center justify-center text-center">
+                                            <ul  className="w-full grid grid-cols-4 items-center justify-center text-center text-xs md:text-sm">
                                                 <li className="col-span-1 border-[1px] border-gray-800">{item.lotNumber}</li>
                                                 <li className="col-span-1 border-[1px] border-gray-800">{item.partyName}</li>
                                                 <li className="col-span-1 border-[1px] border-gray-800">{item.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
