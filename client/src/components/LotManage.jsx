@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 
 function LotManage() {
     const [fabricAmount,setFabricAmount]=useState('')
+    const [thanQty,setThanQty]=useState('')
     const [isLoading,setIsLoading]=useState(false)
     const [msg,setMsg]=useState("")
     const [lot,setLot]=useState([])
@@ -21,11 +22,12 @@ function LotManage() {
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify({id, fabricAmount})
+        body:JSON.stringify({id, fabricAmount,thanQty})
        })
       
        setFabricAmount('')
-       setMsg("Than Added Successfully")
+       setThanQty('')
+       setMsg("Added Successfully")
        setTimeout(()=>{
        setMsg('')
        },3000)
@@ -78,6 +80,11 @@ function LotManage() {
               <div className="w-full border-[1px] border-gray-400 p-4 grid grid-cols-2">
                   <label>Enter Goj Amount</label>
                   <input type="number" className="px-4 py-1 border-[1px] border-gray-500 focus:outline-none" onChange={(e) => { setFabricAmount(e.target.value) }} />
+              <h2 className={`${msg ? "flex text-lg text-green-600 font-semibold" : "hidden"}`}>{msg}</h2>
+              </div>
+              <div className="w-full border-[1px] border-gray-400 p-4 grid grid-cols-2">
+                  <label>Enter Than Quantity</label>
+                  <input type="number" className="px-4 py-1 border-[1px] border-gray-500 focus:outline-none" onChange={(e) => { setThanQty(e.target.value) }} />
               <h2 className={`${msg ? "flex text-lg text-green-600 font-semibold" : "hidden"}`}>{msg}</h2>
               </div>
               <button className="bg-green-600 text-white py-2 text-xs font-semibold mb-4" onClick={handelClick}>Save Than</button>

@@ -38,10 +38,11 @@ const createLot = async (req, res) => {
 const addFabricToLot = async (req, res) => {
     try {
         const { id } = req.params
-        const { fabricAmount } = req.body
+        const { fabricAmount,thanQty } = req.body
         const findLot = await Lot.findOne({ _id: id })
         const newFabric = new Fabric({
             fabricAmount,
+            thanQty,
             date: new Date()
 
         })
