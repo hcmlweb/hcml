@@ -56,7 +56,7 @@ const Lot = () => {
                                                 <li className="col-span-1 border-[1px] border-gray-800">{item.lotNumber}</li>
                                                 <li className="col-span-1 border-[1px] border-gray-800">{item.partyName}</li>
                                                 <li className="col-span-1 border-[1px] border-gray-800">{item.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
-                                                <li className="col-span-1 border-[1px] border-gray-800">5</li>
+                                                <li className="col-span-1 border-[1px] border-gray-800">{item.fabrics.map(fabric => fabric.thanQty)}</li>
                                             </ul>
                                         </Link>
                                         
