@@ -16,7 +16,7 @@ const Lot = () => {
     }, [])
     useEffect(() => {
         setIsLoading(true)
-        fetch(`http://localhost:4000/api/fabric`)
+        fetch(`https://hcml-d4nk.vercel.app/api/fabric`)
             .then(res => {
                 return res.json()
             })

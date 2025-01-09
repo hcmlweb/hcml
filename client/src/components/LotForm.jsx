@@ -13,7 +13,7 @@ const LotForm = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch('http://localhost:4000/api/party')
+        fetch('https://hcml-d4nk.vercel.app/api/party')
             .then(res => { return res.json() })
             .then(data => { setData(data) })
         setIsLoading(false)
@@ -24,7 +24,7 @@ const LotForm = () => {
         setIsLoading(true)
         e.preventDefault()
 
-        await fetch('http://localhost:4000/api/lot', {
+        await fetch('https://hcml-d4nk.vercel.app/api/lot', {
             method: "post",
             headers: {
                 "Content-Type": "application/json"

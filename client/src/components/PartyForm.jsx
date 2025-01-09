@@ -10,7 +10,7 @@ const PartyForm = () => {
     const handelParty = async (e) => {
         setIsLoading(true)
         e.preventDefault()
-        await fetch('http://localhost:4000/api/party', {
+        await fetch('https://hcml-d4nk.vercel.app/api/party', {
             method: "post",
             headers: {
                 "Content-Type": "application/json"

@@ -9,14 +9,14 @@ function LotManage() {
     const [lot,setLot]=useState([])
 
   useEffect(()=>{
-    fetch(`http://localhost:4000/api/lot`)
+    fetch(`https://hcml-d4nk.vercel.app/api/lot`)
     .then(res=>res.json())
     .then(data=> setLot(data))
   },[fabricAmount])
 
     const handelClick=async(e)=>{
         setIsLoading(true)
-       await fetch(`http://localhost:4000/api/lot/${id}`,{
+       await fetch(`https://hcml-d4nk.vercel.app/api/lot/${id}`,{
         method:"post",
         headers:{
             "Content-Type":"application/json"
