@@ -9,7 +9,7 @@ const Lot = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch('http://localhost:4000/api/lot')
+        fetch('https://hcml-d4nk.vercel.app/api/lot')
             .then(res => { return res.json() })
             .then(data => { setLot(data) })
         setIsLoading(false)
