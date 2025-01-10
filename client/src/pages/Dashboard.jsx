@@ -32,7 +32,7 @@ function Dashboard() {
         <button className='col-span-5 sm:hidden bg-white flex flex-row items-center justify-between px-2 pt-2'>
           <TfiMenu className={`text-xl text-blue-600`} onClick={() => { setToggle(!toggle) }} />
           <img className='w-[40px]' src={Logo} alt="HCML" />
-          <div></div>
+          <div className="w-[10px]'></div>
         </button>
         <div className={`col-span-2 transition duration-400 ${!toggle ? "hidden" : "absolute"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
           <SideBar toggle={toggle} setToggle={setToggle} />
