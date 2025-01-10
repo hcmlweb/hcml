@@ -25,7 +25,7 @@ const LotForm = () => {
         setIsLoading(true)
         e.preventDefault()
 
-        await fetch(`${BASE_API}/lot`, {
+        await fetch(`https://hcml-d4nk.vercel.app/api/lot`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
