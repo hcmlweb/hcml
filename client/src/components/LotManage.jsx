@@ -38,8 +38,8 @@ function LotManage() {
   return (
     <>
     {isLoading ? <h2>Loading</h2> :
-    <div className="w-full flex flex-col item-center justify-center p-2 md:p-8 text-xs font-semibold">
-            <div className='w-full flex flex-col item-center justify-center p-8 text-xs font-semibold'>
+    <div className="w-full flex flex-col item-center justify-center p-1 md:p-8 text-xs font-semibold">
+            <div className='w-full flex flex-col item-center justify-center p-1 md:p-8 text-xs font-semibold'>
               <div className='w-full'> {lot.map(item=> {if(item._id==id){
                 return (
                  <div className='w-full' key={item._id}>
