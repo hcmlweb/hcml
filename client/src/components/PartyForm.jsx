@@ -2,15 +2,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 
+
+
 const PartyForm = () => {
     const [partyName, setPartyName] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [msg, setMsg] = useState('')
 
+
+
+
     const handelParty = async (e) => {
         setIsLoading(true)
         e.preventDefault()
-        await fetch('https://hcml-d4nk.vercel.app/api/party', {
+        await fetch(`https://hcml-d4nk.vercel.app/api/party`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
