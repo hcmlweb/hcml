@@ -47,8 +47,8 @@ function LotManage() {
                       <h2 className='text-sm md:text-4xl p-2 mr-2'>Lot Number:<span className='pl-2'>{item.lotNumber}</span></h2>
                       <h2 className='text-sm md:text-3xl p-2 mr-2'>Party Name:<span className='pl-2'>{item.partyName}</span></h2>
                     </div>
-                    <div className='w-full grid grid-cols-2 gap-4 p-2'>
-                      <div className='col-span-1 w-full flex flex-col items-center justify-center'>
+                    <div className='w-full flax flax-col md:grid md:grid-cols-2 gap-4 p-2'>
+                      <div className='md:col-span-1 w-full flex flex-col items-center justify-center'>
                         <h2 className='text-xs font-serif font-semibold underline'>Total Griege Receive For This Than</h2>
                         <div className='w-full flex flex-col items-center justify-evenly'>
                           <ul className='w-full grid grid-cols-2 text-center'>
@@ -68,21 +68,21 @@ function LotManage() {
                           </ul>
                         </div>
                       </div>
-                      <div className='col-span-1'></div>
+                      <div className='md:col-span-1'></div>
 
                     </div>
                  </div>
               )
               }})} </div>
             </div>
-            <div className='w-full flex flex-col item-center justify-center p-8 text-xs font-semibold'>
+            <div className='w-full flex flex-col item-center justify-center p-1 md:p-8 text-xs font-semibold'>
               <h2 className="w-full text-center uppercase text-xs font-semibold bg-blue-500 text-white py-2">ADD A NEW THAN</h2>
-              <div className="w-full border-[1px] border-gray-400 p-4 grid grid-cols-2">
+              <div className="w-full border-[1px] border-gray-400 p-1 md:p-4 grid grid-cols-2">
                   <label>Enter Goj Amount</label>
                   <input type="number" className="px-4 py-1 border-[1px] border-gray-500 focus:outline-none" onChange={(e) => { setFabricAmount(e.target.value) }} />
               <h2 className={`${msg ? "flex text-lg text-green-600 font-semibold" : "hidden"}`}>{msg}</h2>
               </div>
-              <div className="w-full border-[1px] border-gray-400 p-4 grid grid-cols-2">
+              <div className="w-full border-[1px] border-gray-400 p-1 md:p-4 grid grid-cols-2">
                   <label>Enter Than Quantity</label>
                   <input type="number" className="px-4 py-1 border-[1px] border-gray-500 focus:outline-none" onChange={(e) => { setThanQty(e.target.value) }} />
               <h2 className={`${msg ? "flex text-lg text-green-600 font-semibold" : "hidden"}`}>{msg}</h2>
