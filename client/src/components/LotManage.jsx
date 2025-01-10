@@ -44,8 +44,8 @@ function LotManage() {
                 return (
                  <div className='w-full' key={item._id}>
                    <div className='uppercase border-0 border-b-[2px] border-gray-700'>
-                      <h2 className='text-4xl p-2 mr-2'>Lot Number:<span className='pl-2'>{item.lotNumber}</span></h2>
-                      <h2 className='text-3xl p-2 mr-2'>Party Name:<span className='pl-2'>{item.partyName}</span></h2>
+                      <h2 className='text-sm md:text-4xl p-2 mr-2'>Lot Number:<span className='pl-2'>{item.lotNumber}</span></h2>
+                      <h2 className='text-sm md:text-3xl p-2 mr-2'>Party Name:<span className='pl-2'>{item.partyName}</span></h2>
                     </div>
                     <div className='w-full grid grid-cols-2 gap-4 p-2'>
                       <div className='col-span-1 w-full flex flex-col items-center justify-center'>
