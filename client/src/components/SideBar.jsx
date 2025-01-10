@@ -10,7 +10,7 @@ const SideBar = ({ setToggle, toggle }) => {
         <>
             <div className='flex flex-col items-center justify-center space-y-2 p-1 shadow-md'>
                 <div className='w-full flex flex-row items-center justify-between'>
-                    <div></div>
+                    <div className="w-[10px]"></div>
                     <img className='w-[40px] md:w-[60px]' src={Logo} alt="HCML" />
                     <div className='hidden sm:flex'></div>
                     <FaMixer onClick={() => { setToggle(!toggle) }} className={`text-xl text-blue-600 opacity-70 sm:hidden`} />
