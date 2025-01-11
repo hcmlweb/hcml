@@ -68,7 +68,7 @@ const deliveryFabric = async (req, res) => {
             thanQty
         })
         findLotToDeliver.deliveryFabrics.push(newDeliver)
-        findLotToDeliver.deliverFabrics = findLotToDeliver.deliveryFabrics.reduce((total, deliver) => total + deliver.deliveryAmount, 0)
+        findLotToDeliver.deliverFabrics = findLotToDeliver.deliveryFabrics.reduce((total, deliver) => total + deliver.fabricAmount, 0)
         findLotToDeliver.availableFabrics = findLotToDeliver.totalFabrics - findLotToDeliver.deliverFabrics
         if (findLotToDeliver.deliverFabrics != 0) {
             findLotToDeliver.lotStatus = "Delivery Running"
