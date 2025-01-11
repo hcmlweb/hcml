@@ -41,17 +41,17 @@ function Dashboard() {
   }, [location.pathname])
 
 
-  return (<div className='w-full grid grid-cols-5 sm:grid-cols-12 bg-gray-400 h-screen relative'>
+  return (<div className='w-full grid grid-cols-5 sm:grid-cols-12 bg-gray-400 h-screen'>
     <button className='col-span-5 sm:hidden bg-white flex flex-row items-center justify-between px-2 pt-2'>
       <TfiMenu className={`text-xl text-blue-600`} onClick={() => { setToggle(!toggle) }} />
       <img className='w-[40px]' src={Logo} alt="HCML" />
       <div className="w-[10px]"></div>
     </button>
-    <div className={`col-span-2 transition-all overflow-hidden duration-700 ${!toggle ? "w-0" : "w-full absolute"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
+    <div className={`col-span-2 transition-all overflow-hidden duration-700 ${!toggle ? "-ml-100%" : "ml-0"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
       <SideBar toggle={toggle} setToggle={setToggle} />
     </div>
     <div className='sm:col-span-10 col-span-5 py-2 md:py-4 h-screen bg-white'>
-      <main className={`${!dpage ? "flax" : "hidden "} p-1 md:p-4 absolute`}>
+      <main className={`${!dpage ? "flax" : "hidden "} p-1 md:p-4`}>
         <div className="uppercase">
           <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">Dashboard</h2>
         </div>
