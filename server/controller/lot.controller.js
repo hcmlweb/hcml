@@ -19,7 +19,8 @@ const getAllLot = async (req, res) => {
 const createLot = async (req, res) => {
     try {
         const { lotNumber, partyName, date } = req.body;
-        const utcPlusSixHours=new Date(date.getTime() + 6 * 60 * 60 * 1000)
+        const localDate= new Date(date)
+        const utcPlusSixHours=new Date(localDate.getTime()+ 6 * 60 * 60 * 1000)
         const newLot = new Lot({
             lotNumber,
             partyName,
