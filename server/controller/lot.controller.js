@@ -28,7 +28,7 @@ const createLot = async (req, res) => {
             deliverFabrics: 0,
             availableFabrics: 0,
             lotStatus: "Receive Griege",
-            date:utcPlusSixHours
+            date:new Date(utcPlusSixHours)
         })
         const saveLot = await newLot.save()
         res.status(201).json(saveLot)
