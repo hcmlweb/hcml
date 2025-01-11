@@ -8,6 +8,7 @@ function LotManage() {
   const [isLoading, setIsLoading] = useState(false)
   const [msg, setMsg] = useState("")
   const [lot, setLot] = useState([])
+  const [check, setCheck] = useState(false)
 
 
 
@@ -19,7 +20,7 @@ function LotManage() {
 
   const handelClick = async (e) => {
     setIsLoading(true)
-    await fetch(`https://hcml-d4nk.vercel.app/api/lot/${id}`, {
+    await fetch(`${check ? `https://hcml-d4nk.vercel.app/api/lot/deliver/${id}` : `https://hcml-d4nk.vercel.app/api/lot/${id}`}`, {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -82,6 +83,9 @@ function LotManage() {
           </div>
           <div className='w-full flex flex-col item-center justify-center p-1 md:p-8 text-xs font-semibold'>
             <h2 className="w-full text-center uppercase text-xs font-semibold bg-blue-500 text-white py-2">ADD A NEW THAN</h2>
+            <div className="w-full border-[1px] border-gray-400 p-1 md:p-4 flex flex-row items-center justify-start space-x-4">
+              <span>if want to deliver a lot! please checked</span><input type="checkbox" className='w-16' onChange={() => { setCheck(!check) }} />
+            </div>
             <div className="w-full border-[1px] border-gray-400 p-1 md:p-4 grid grid-cols-2">
               <label>Enter Goj Amount</label>
               <input type="number" className="px-4 py-1 border-[1px] border-gray-500 focus:outline-none" onChange={(e) => { setFabricAmount(e.target.value) }} />

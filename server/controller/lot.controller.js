@@ -26,7 +26,7 @@ const createLot = async (req, res) => {
             deliverFabrics: 0,
             availableFabrics: 0,
             lotStatus: "Receive Griege",
-            date:new Date(date)
+            date: new Date(date)
         })
         const saveLot = await newLot.save()
         res.status(201).json(saveLot)
@@ -39,7 +39,7 @@ const createLot = async (req, res) => {
 const addFabricToLot = async (req, res) => {
     try {
         const { id } = req.params
-        const { fabricAmount,thanQty } = req.body
+        const { fabricAmount, thanQty } = req.body
         const findLot = await Lot.findOne({ _id: id })
         const newFabric = new Fabric({
             fabricAmount,
@@ -61,10 +61,11 @@ const addFabricToLot = async (req, res) => {
 const deliveryFabric = async (req, res) => {
     try {
         const { id } = req.params;
-        const { deliveryAmount } = req.body;
+        const { fabricAmount, thanQty } = req.body;
         const findLotToDeliver = await Lot.findOne({ _id: id })
         const newDeliver = new Delivery({
-            deliveryAmount
+            fabricAmount,
+            thanQty
         })
         findLotToDeliver.deliveryFabrics.push(newDeliver)
         findLotToDeliver.deliverFabrics = findLotToDeliver.deliveryFabrics.reduce((total, deliver) => total + deliver.deliveryAmount, 0)
@@ -82,8 +83,6 @@ const deliveryFabric = async (req, res) => {
     }
 
 }
-
-
 
 
 module.exports = { getAllLot, createLot, addFabricToLot, deliveryFabric }

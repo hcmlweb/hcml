@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const deliverySchema = mongoose.Schema({
-    deliveryAmount: Number,
+    fabricAmount: Number,
+    thanQty: Number
 })
 
 module.exports = deliverySchema;

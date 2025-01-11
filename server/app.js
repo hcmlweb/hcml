@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express();
 const PORT = process.env.PORT;
+
 const MONGODB_URI = process.env.MONGODB_URI;
 
 const lotRoute = require('./router/lot.route')
