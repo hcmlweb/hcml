@@ -79,8 +79,8 @@ function Dashboard() {
             })}
           </div>
           <div className='col-span-1 mt-2 flex flex-col items-center justify-center'>
-            <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-blue-500'>Todays Griege Out</h2>
-            <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-blue-600 text-white text-center text-xs sm:text-sm'>
+            <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-orange-500'>Todays Griege Out</h2>
+            <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-orange-600 text-white text-center text-xs sm:text-sm'>
               <li className='col-span-1'>Lot Number</li>
               <li className='col-span-1'>Party Name</li>
               <li className='col-span-1'>Griege Amount</li>
