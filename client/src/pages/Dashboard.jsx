@@ -41,13 +41,13 @@ function Dashboard() {
   }, [location.pathname])
 
 
-  return (<div className='w-full grid grid-cols-5 sm:grid-cols-12 bg-gray-400 h-screen'>
+  return (<div className='w-full grid grid-cols-5 sm:grid-cols-12 bg-gray-400 h-screen relative'>
     <button className='col-span-5 sm:hidden bg-white flex flex-row items-center justify-between px-2 pt-2'>
       <TfiMenu className={`text-xl text-blue-600`} onClick={() => { setToggle(!toggle) }} />
       <img className='w-[40px]' src={Logo} alt="HCML" />
       <div className="w-[10px]"></div>
     </button>
-    <div className={`col-span-2 transition-all overflow-hidden duration-400 ${!toggle ? "w-0" : "w-full"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
+    <div className={`col-span-2 transition-all overflow-hidden duration-700 ${!toggle ? "w-0" : "w-full absolute"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
       <SideBar toggle={toggle} setToggle={setToggle} />
     </div>
     <div className='sm:col-span-10 col-span-5 py-2 md:py-4 h-screen bg-white'>
