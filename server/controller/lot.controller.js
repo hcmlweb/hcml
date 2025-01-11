@@ -19,6 +19,7 @@ const getAllLot = async (req, res) => {
 const createLot = async (req, res) => {
     try {
         const { lotNumber, partyName, date } = req.body;
+        const utcPlusSixHours=new Date(date.getTime() + 6 * 60 * 60 * 1000)
         const newLot = new Lot({
             lotNumber,
             partyName,
@@ -26,7 +27,7 @@ const createLot = async (req, res) => {
             deliverFabrics: 0,
             availableFabrics: 0,
             lotStatus: "Receive Griege",
-            date
+            date:utcPlusSixHours
         })
         const saveLot = await newLot.save()
         res.status(201).json(saveLot)

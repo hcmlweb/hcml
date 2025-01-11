@@ -60,9 +60,9 @@ function Dashboard() {
                 </ul>
                 {lot.map(party=>{
                   return(
-                <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 text-start  text-sm'>
+                <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 text-center  text-sm'>
                   <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
-                  <li className='text-center pl-[1px] col-span-1'>{party.partyName}</li>
+                  <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
                   <li className=' pl-[1px] col-span-1'>{party.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
                   <li className=' pl-[1px] col-span-1'>{party.fabrics.reduce((total, than) => total + than.thanQty, 0)}</li>
                 </ul>
