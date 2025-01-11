@@ -11,7 +11,7 @@ import { TfiMenu } from "react-icons/tfi";
 
 function Dashboard() {
 
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(true)
   const [dpage, setDpage] = useState(true)
   const location = useLocation()
   const [lot, setLot] = useState([])
