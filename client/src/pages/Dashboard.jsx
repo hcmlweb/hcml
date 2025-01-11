@@ -47,7 +47,7 @@ function Dashboard() {
       <img className='w-[40px]' src={Logo} alt="HCML" />
       <div className="w-[10px]"></div>
     </button>
-    <div className={`col-span-2 transition duration-400 ${!toggle ? "hidden" : "absolute"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
+    <div className={`col-span-2 transition-all overflow-hidden duration-400 ${!toggle ? "w-0" : "w-full"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
       <SideBar toggle={toggle} setToggle={setToggle} />
     </div>
     <div className='sm:col-span-10 col-span-5 py-2 md:py-4 h-screen bg-white'>
