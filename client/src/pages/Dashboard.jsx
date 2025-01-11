@@ -51,7 +51,7 @@ function Dashboard() {
       <SideBar toggle={toggle} setToggle={setToggle} />
     </div>
     <div className='sm:col-span-10 col-span-5 py-2 md:py-4 h-screen bg-white'>
-      <main className={`${!dpage ? "flax" : "hidden "} p-4`}>
+      <main className={`${!dpage ? "flax" : "hidden "} p-1 md:p-4`}>
         <div className="uppercase">
           <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">Dashboard</h2>
         </div>
