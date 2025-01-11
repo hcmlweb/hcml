@@ -42,12 +42,12 @@ function Dashboard() {
 
 
   return (<div className='w-full grid grid-cols-5 sm:grid-cols-12 bg-gray-400 h-screen'>
-    <button className='col-span-5 sm:hidden bg-white flex flex-row items-center justify-between px-2 pt-2 absolute'>
+    <button className='col-span-5 sm:hidden bg-white flex flex-row items-center justify-between px-2 pt-2'>
       <TfiMenu className={`text-xl text-blue-600`} onClick={() => { setToggle(!toggle) }} />
       <img className='w-[40px]' src={Logo} alt="HCML" />
       <div className="w-[10px]"></div>
     </button>
-    <div className={`col-span-2 transition-all duration-700 ${!toggle ? "-mr-100&" : "mr-0"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px]`}>
+    <div className={`col-span-2 transition-all duration-700 ${!toggle ? "mr-[2000px]" : "mr-0"}  sm:flex flex-col bg-white py-2 md:py-4 h-screen mr-[2px] absolute`}>
       <SideBar toggle={toggle} setToggle={setToggle} />
     </div>
     <div className='sm:col-span-10 col-span-5 py-2 md:py-4 h-screen bg-white'>
