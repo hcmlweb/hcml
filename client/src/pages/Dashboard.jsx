@@ -64,14 +64,12 @@ function Dashboard() {
                   <li className='col-span-1'>Party Name</li>
                   <li className='col-span-1'>Griege Amount</li>
                   <li className='col-span-1'>Than Qty</li>
-                
                 </ul>
                 {lot.map(party=>{
                     const collectDate=new Date(party.date).toLocaleDateString()
                   if(collectDate===newDate){
                     return(
-                      <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 text-center  text-sm'>
-                       
+                      <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 border-t-0 border-b-[1px]  text-center  text-sm'>
                         <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
                         <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
                         
