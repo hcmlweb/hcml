@@ -67,6 +67,7 @@ const LotForm = () => {
                     <div className="w-full border-[1px] border-gray-400 p-4 grid grid-cols-2">
                         <label htmlFor="pickDate">Pick A Date</label>
                         <input type="date" id="pickDate" className="px-4 py-1 border-[1px] border-gray-500 focus:outline-none" onChange={(e) => { setDate(e.target.value) }} />
+                        {console.log(date)}
                         <span className={`${!msg ? "hidden" : "text-green text-lg font-semibold text-green-600"}`}>{msg}</span>
                     </div>
                     <button className="bg-green-600 text-white py-2 text-xs font-semibold mb-4" onClick={handelClick}>Save Lot</button>
