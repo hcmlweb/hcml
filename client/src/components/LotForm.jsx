@@ -11,7 +11,8 @@ const LotForm = () => {
     const [isLoading, setIsLoading] = useState(false)
 
 
-
+const newLocalDate=new Date(date)
+const isosTime=newLocalDate.toLocaleString()
     useEffect(() => {
         setIsLoading(true)
         fetch(`https://hcml-d4nk.vercel.app/api/party`)
@@ -33,7 +34,7 @@ const LotForm = () => {
             body: JSON.stringify({
                 partyName,
                 lotNumber,
-                date
+                date:isosTime
             })
         });
         setMsg('Add success fully')
