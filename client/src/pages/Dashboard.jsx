@@ -16,6 +16,13 @@ function Dashboard() {
   const location = useLocation()
   const [lot,setLot]=useState([])
 
+
+ const date =new Date()
+ const newDate= date.toLocaleDateString()
+
+
+
+
   useEffect(()=>{
     fetch("https://hcml-d4nk.vercel.app/api/lot")
     .then(res=>res.json())
@@ -57,16 +64,22 @@ function Dashboard() {
                   <li className='col-span-1'>Party Name</li>
                   <li className='col-span-1'>Griege Amount</li>
                   <li className='col-span-1'>Than Qty</li>
+                
                 </ul>
                 {lot.map(party=>{
-                  return(
-                <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 text-center  text-sm'>
-                  <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
-                  <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
-                  <li className=' pl-[1px] col-span-1'>{party.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
-                  <li className=' pl-[1px] col-span-1'>{party.fabrics.reduce((total, than) => total + than.thanQty, 0)}</li>
-                </ul>
-                  )
+                    const collectDate=new Date(party.date).toLocaleDateString()
+                  if(collectDate===newDate){
+                    return(
+                      <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 text-center  text-sm'>
+                       
+                        <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
+                        <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
+                        
+                        <li className=' pl-[1px] col-span-1'>{party.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
+                        <li className=' pl-[1px] col-span-1'>{party.fabrics.reduce((total, than) => total + than.thanQty, 0)}</li>
+                      </ul>
+                     )
+                  }
                 })}
                 
 
