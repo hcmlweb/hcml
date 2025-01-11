@@ -82,7 +82,8 @@ function LotManage() {
             })} </div>
           </div>
           <div className='w-full flex flex-col item-center justify-center p-1 md:p-8 text-xs font-semibold'>
-            <h2 className="w-full text-center uppercase text-xs font-semibold bg-blue-500 text-white py-2">ADD A NEW THAN</h2>
+            {check ? <h2 className="w-full text-center uppercase text-xs font-semibold bg-blue-500 text-white py-2">Deliver giege of this THAN</h2> :
+              <h2 className="w-full text-center uppercase text-xs font-semibold bg-blue-500 text-white py-2">ADD A NEW THAN</h2>}
             <div className="w-full border-[1px] border-gray-400 p-1 md:p-4 flex flex-row items-center justify-start space-x-4">
               <span>if want to deliver a lot! please checked</span><input type="checkbox" className='w-16' onChange={() => { setCheck(!check) }} />
             </div>
