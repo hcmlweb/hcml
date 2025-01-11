@@ -90,7 +90,7 @@ function Dashboard() {
               const collectDate = new Date(party.date).toLocaleDateString()
               if (collectDate === newDate && party.lotStatus === "Delivery Running") {
                 return (
-                  <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 border-t-0 border-b-[1px]  text-center text-xs sm:text-sm'>
+                  <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-orange-600 border-t-0 border-b-[1px]  text-center text-xs sm:text-sm'>
                     <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
                     <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
                     <li className=' pl-[1px] col-span-1'>{party.deliveryFabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
