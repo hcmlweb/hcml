@@ -2,7 +2,7 @@ const Dyeing=require('../model/dyeing.model')
 
 
 
-const createDayingMemo=(req,res)=>{
+const createDayingMemo=async(req,res)=>{
     try {
         const {
             memoNumber,
@@ -15,11 +15,22 @@ const createDayingMemo=(req,res)=>{
             colorQty,
             date,
         }=req.body
-    
-        res.status(201).json({massage: "work running"})
+        const createDyingDemand= new Dyeing({
+            memoNumber,
+            partyName,
+            lotNumber,
+            dyeingCatagory,
+            dyeingColor,
+            dyeingQty,
+            colorName,
+            colorQty,
+            date:new Date()
+        })
+        const saveDyeingDemand=await createDyingDemand.save()
+        res.status(201).json(saveDyeingDemand)
         
     } catch (error) {
-        res.status(404).json({massage: "work running"})
+        res.status(404).json({massage: "not working"})
     }
 }
 
