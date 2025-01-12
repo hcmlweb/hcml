@@ -2,7 +2,7 @@ const Dyeing=require('../model/dyeing.model')
 
 
 
-module.exports.createDayingMemo=(req,res)=>{
+const createDayingMemo=(req,res)=>{
     try {
         const {
             memoNumber,
@@ -11,6 +11,10 @@ module.exports.createDayingMemo=(req,res)=>{
             dyeingCatagory,
             dyeingColor,
             dyeingQty,
+            colorName,
+            colorQty,
+            date,
+            
         }=req.body
     
 
@@ -20,3 +24,5 @@ module.exports.createDayingMemo=(req,res)=>{
     }
 }
 
+
+module.exports={createDayingMemo}

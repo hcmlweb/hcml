@@ -1,4 +1,5 @@
-const express=require('express')
+const express=require('express');
+const { createDayingMemo } = require('../controller/dyeing.controller');
 const router=express.Router();
 
 
