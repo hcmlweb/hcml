@@ -8,23 +8,13 @@ const createDayingMemo=async(req,res)=>{
             memoNumber,
             partyName,
             lotNumber,
-            dyeingCatagory,
-            dyeingColor,
-            dyeingQty,
-            colorName,
-            colorQty,
-            date,
+           
         }=req.body
         const createDyingDemand= new Dyeing({
             memoNumber,
             partyName,
             lotNumber,
-            dyeingCatagory,
-            dyeingColor,
-            dyeingQty,
-            colorName,
-            colorQty,
-            date:new Date()
+          
         })
         const saveDyeingDemand=await createDyingDemand.save()
         res.status(201).json(saveDyeingDemand)

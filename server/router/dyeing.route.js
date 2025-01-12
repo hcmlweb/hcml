@@ -1,9 +1,10 @@
-const express=require('express');
+const express=require('express')
+
+const router=express.Router()
+
 const { createDayingMemo } = require('../controller/dyeing.controller');
-const router=express.Router();
 
-
-router.post('/',createDayingMemo)
+router.post('/', createDayingMemo)
 
 
 

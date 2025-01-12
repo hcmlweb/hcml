@@ -1,9 +1,9 @@
 const Color=require('../model/color.model')
 
 
-const getAllColor= async (req,res)=>{
+const getAllColor = async (req,res)=>{
     try {
-        const getColor=await Color.find()
+        const getColor = await Color.find()
         res.status(200).json(getColor)
     } catch (error) {
         res.status(500).json(error)
