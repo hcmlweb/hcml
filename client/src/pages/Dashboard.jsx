@@ -55,7 +55,7 @@ function Dashboard() {
         <div className="uppercase">
           <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">Dashboard</h2>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 item-cemter justify-between mt-1 sm:mt-2 md:gap-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 item-cemter justify-between mt-2 md:gap-4'>
           <div className='col-span-1 flex flex-col items-center justify-center'>
             <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-blue-500'>Todays Griege In</h2>
             <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-blue-600 text-white text-center text-xs sm:text-sm'>
@@ -78,7 +78,7 @@ function Dashboard() {
               }
             })}
           </div>
-          <div className='col-span-1 mt-2 flex flex-col items-center justify-center'>
+          <div className='col-span-1 mt-2 md:mt-0 flex flex-col items-center justify-center'>
             <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-orange-500'>Todays Griege Out</h2>
             <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-orange-600 text-white text-center text-xs sm:text-sm'>
               <li className='col-span-1'>Lot Number</li>

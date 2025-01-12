@@ -19,10 +19,10 @@ const SideBar = ({ setToggle, toggle }) => {
             </div>
             <div className='w-full flex flex-col items-center justify-start'>
                 <ul className='w-full p-2 text-xs md:text-lg font-mono flex flex-col'>
-                    <NavLink to="/" className='transitio-all duration-300 active:border-b-[1px] border-blue-500 py-1 px-2 hover:bg-sky-100 shadow-sm'>Dashboard</NavLink>
-                    <NavLink to="/lot" className='transitio-all duration-300 active:border-b-[1px] border-blue-500 py-1 px-2 hover:bg-sky-100 shadow-sm'>Griege</NavLink>
-                    <NavLink to="/daing" className='transitio-all duration-300 active:border-b-[1px] border-blue-500 py-1 px-2 hover:bg-sky-100 shadow-sm'>Daying</NavLink>
-                    <NavLink to="/expanse" className='transitio-all duration-300 active:border-b-[1px] border-blue-500 py-1 px-2 hover:bg-sky-100 shadow-sm'>Expanse</NavLink>
+                    <NavLink to="/" className='transitio-all duration-500 active:border-b-[1px] border-blue-500 py-1 px-2 hover:shadow-blue-500 shadow-sm'>Dashboard</NavLink>
+                    <NavLink to="/lot" className='transitio-all duration-500 active:border-b-[1px] border-blue-500 py-1 px-2 hover:shadow-blue-500 shadow-sm'>Griege</NavLink>
+                    <NavLink to="/daing" className='transitio-all duration-500 active:border-b-[1px] border-blue-500 py-1 px-2 hover:shadow-blue-500 shadow-sm'>Daying</NavLink>
+                    <NavLink to="/expanse" className='transitio-all duration-500 active:border-b-[1px] border-blue-500 py-1 px-2 hover:shadow-blue-500 shadow-sm'>Expanse</NavLink>
                 </ul>
             </div>
         </>

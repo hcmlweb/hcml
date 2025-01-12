@@ -52,29 +52,8 @@ function LotManage() {
                       <h2 className='text-sm md:text-3xl py-1 px-2 mr-2'>Party Name:<span className='pl-2'>{item.partyName}</span></h2>
                     </div>
                     <div className='w-full flax flax-col md:grid md:grid-cols-2 gap-4 p-2'>
-                      <div className='md:col-span-1 w-full flex flex-col items-center justify-center'>
-                        <h2 className='text-xs font-serif font-semibold underline'>Total Griege Receive For This Than</h2>
-                        <div className='w-full flex flex-col items-center justify-evenly'>
-                          <ul className='w-full grid grid-cols-2 text-center'>
-                            <li className='col-span-1 border-[1px] border-gray-800 px-2 py-1'>Than No</li>
-                            <li className='col-span-1 border-[1px] border-gray-800 px-2 py-1'>Than Amount</li>
-                          </ul>
-                          {item.fabrics.map((fabric, i) => {
-                            return (
-                              <ul key={fabric._id} className='w-full grid grid-cols-2 text-center'>
-                                <li className='col-span-1 border-[1px] border-gray-800 px-2 py-1'>{i + 1}</li>
-                                <li className='col-span-1 border-[1px] border-gray-800 px-2 py-1'>{fabric.fabricAmount}</li>
-                              </ul>
-                            )
-                          })}
-                          <ul className='w-full grid grid-cols-2 text-center'>
-                            <li className='col-span-1 border-[1px] border-gray-800 px-2 py-1'>Total Griege</li>
-                            <li className='col-span-1 border-[1px] border-gray-800 px-2 py-1'>{item.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div className='md:col-span-1'></div>
-
+                     <div className='md:col-span-1'></div>
+                     <div className='md:col-span-1'></div>
                     </div>
                   </div>
                 )
@@ -97,7 +76,7 @@ function LotManage() {
               <input type="number" className="px-4 py-1 border-[1px] border-gray-500 focus:outline-none" onChange={(e) => { setThanQty(e.target.value) }} />
               <h2 className={`${msg ? "flex text-lg text-green-600 font-semibold" : "hidden"}`}>{msg}</h2>
             </div>
-            <button className="bg-green-600 text-white py-2 text-xs font-semibold mb-4" onClick={handelClick}>Save Than</button>
+            <button className="bg-green-600 text-white py-2 text-xs font-semibold mb-4" onClick={handelClick}>{check?"Deliver Than":"Save Than"}</button>
             <Link to='/lot' className="border-[2px] border-green-600 text-green-600 font-semibold text-xs py-2 px-4 text-center transition-all duration-500 hover:bg-green-600 hover:text-white" >Back to Lot page</Link>
           </div>
         </div>}
