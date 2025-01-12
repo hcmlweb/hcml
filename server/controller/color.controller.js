@@ -1,12 +1,11 @@
-const Consume=require('../model/color.model')
-
+const Dcolor=require('../model/color.model')
 
 const getAllColor = async (req,res)=>{
     try {
-        const getColor =await Consume.find()
-        res.status(200).json(getColor)
+        const getAllColor=await Dcolor.find()
+        res.status(201).json(getAllColor)
     } catch (error) {
-        res.status(500).json(error)
+        res.status(404).json({massage:"Not Found"})
     }
 }
 
