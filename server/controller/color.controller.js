@@ -1,9 +1,9 @@
-const Color=require('../model/color.model')
+const Consume=require('../model/color.model')
 
 
 const getAllColor = async (req,res)=>{
     try {
-        const getColor = await Color.find()
+        const getColor =await Consume.find()
         res.status(200).json(getColor)
     } catch (error) {
         res.status(500).json(error)
@@ -18,7 +18,7 @@ const createNewColor=async(req,res)=>{
                 colorQty,
                } =req.body;
 
-            const newColor= new Color({
+            const newColor= new Consume({
                 colorName,
                 colorQty,
                 date: new Date()
