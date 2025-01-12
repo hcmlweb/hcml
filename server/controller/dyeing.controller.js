@@ -14,13 +14,12 @@ const createDayingMemo=(req,res)=>{
             colorName,
             colorQty,
             date,
-            
         }=req.body
     
-
+        res.status(201).json({massage: "work running"})
         
     } catch (error) {
-        
+        res.status(404).json({massage: "work running"})
     }
 }
 
