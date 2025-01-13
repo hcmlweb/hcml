@@ -1,8 +1,8 @@
-const Dcolor=require('../model/color.model')
+const Color=require('../model/color.model')
 
 const getAllColor = async (req,res)=>{
     try {
-        const getAllColor=await Dcolor.find()
+        const getAllColor=await Color.find()
         res.status(201).json(getAllColor)
     } catch (error) {
         res.status(404).json({massage:"Not Found"})
@@ -17,7 +17,7 @@ const createNewColor=async(req,res)=>{
                 colorQty,
                } =req.body;
 
-            const newColor= new Consume({
+            const newColor= new Color({
                 colorName,
                 colorQty,
                 date: new Date()
