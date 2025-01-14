@@ -1,8 +1,9 @@
 import React from 'react'
+import { useEffect,useState} from 'react'
 
 function Color() {
 
-
+const [colors,setColors]=useState([])
   useEffect(()=>{
     fetch('https://hcml-d4nk.vercel.app/api/color')
 .then(then=>res.json())
