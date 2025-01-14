@@ -5,6 +5,7 @@ import PartyForm from "./components/PartyForm"
 import LotManage from "./components/LotManage"
 import Dashboard from "./pages/Dashboard"
 import Home from "./pages/Home"
+import Color from "./components/Color"
 function App() {
 
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/newlot" element={<LotForm />} />
           <Route path="/party" element={<PartyForm />} />
           <Route path="/lot/:id" element={<LotManage />} />
+          <Route path="/color" element={<Color />} />
         </Route>
       </Routes>
     </>
