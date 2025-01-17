@@ -33,7 +33,7 @@ function Color() {
                 <ColorModel setVisible={setVisible} />
             </Modal>
             <Modal isOpen={visibleDemand}>
-                <DemandForm />
+                <DemandForm setVisibleDemand={setVisibleDemand} />
             </Modal>
             <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md">Color Management</h2>
             <div className='w-full flex flex-row items-start justify-start p-4 space-x-2'>

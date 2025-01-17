@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 
 
-const DemandForm = () => {
+const DemandForm = ({ setVisibleDemand }) => {
 
     const [data, setData] = useState([])
 
@@ -36,6 +36,7 @@ const DemandForm = () => {
                 },
                 body: JSON.stringify(demands)
             })
+            setVisibleDemand(false)
         } catch (error) {
             console.log(error)
         }
