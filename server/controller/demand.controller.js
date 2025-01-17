@@ -5,7 +5,8 @@ const Color = require('../model/color.model')
 const getAllDemand = async (req, res) => {
     try {
         const getDemand = await Demand.find()
-        res.status(200).json(getDemand)
+        const allColor = await Color.find()
+        res.status(200).json(getDemand, allColor)
     } catch (error) {
         res.status(404).json({ massage: "Not Available" })
     }
