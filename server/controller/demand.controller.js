@@ -15,10 +15,12 @@ const createDemand = async (req, res) => {
 
     try {
         const { demands } = req.body;
-        const color = await Color.findOne({ colorName: demands.colorName })
-        if (color) {
-            color.colorQty -= demands.colorQty
-            await color.save()
+        for (let demand of demands) {
+            const color = await Color.findOne({ colorName: demand.colorName })
+            if (color) {
+                color.colorQty -= demand.colorQty
+                await color.save()
+            }
         }
 
         const colorDemand = new Demand(demands)
