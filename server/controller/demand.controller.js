@@ -6,7 +6,7 @@ const getAllDemand = async (req, res) => {
     try {
         // const getDemand = await Demand.find()
         const allColor = await Color.find()
-        res.status(200).json(getDemand, allColor)
+        res.status(200).json(allColor)
     } catch (error) {
         res.status(404).json({ massage: "Not Available" })
     }
