@@ -26,10 +26,10 @@ const DemandForm = () => {
             .then(res => res.json())
             .then(data => setData(data))
     }, [])
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            fetch('https://hcml-d4nk.vercel.app/api/demand', {
+            await fetch('https://hcml-d4nk.vercel.app/api/demand', {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json"
