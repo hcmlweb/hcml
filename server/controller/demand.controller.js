@@ -14,16 +14,18 @@ const getAllDemand = async (req, res) => {
 const createDemand = async (req, res) => {
     const { colorName, colorQty } = req.body;
     try {
-        const colorDemand = new Demand({
-            colorName,
-            colorQty
-        })
-        const saveDemand = await colorDemand.save()
+
         const color = Color.findOne({ colorName })
         if (color) {
             color.colorQty -= colorQty
             await color.save()
         }
+
+        const colorDemand = new Demand({
+            colorName,
+            colorQty
+        })
+        const saveDemand = await colorDemand.save()
         res.status(201).json(saveDemand)
     } catch (error) {
         res.status(404).json({ massage: "Not Found" })
