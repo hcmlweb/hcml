@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import ColorModel from './ColorModel'
+import DemandForm from './DemandForm'
 
 
 
@@ -11,6 +12,7 @@ function Color() {
 
     const [colors, setColors] = useState([])
     const [visible, setVisible] = useState(false)
+    const [visibleDemand, setVisibleDemand] = useState(false)
     useEffect(() => {
         fetch('https://hcml-d4nk.vercel.app/api/dcolor')
             .then(res => res.json())
@@ -30,10 +32,14 @@ function Color() {
             <Modal isOpen={visible}>
                 <ColorModel setVisible={setVisible} />
             </Modal>
+            <Modal isOpen={visibleDemand}>
+                <DemandForm />
+            </Modal>
             <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md">Color Management</h2>
             <div className='w-full flex flex-row items-start justify-start p-4 space-x-2'>
                 <button className='px-4 py-2 bg-green-600 text white text-xs text-white rounded-sm shadow-sm' onClick={handelOpenModal}>Add New Color</button>
                 <button className='px-4 py-2 bg-sky-600 text white text-xs text-white rounded-sm shadow-sm'>Add Color Value</button>
+                <button className='px-4 py-2 bg-yellow-600 text white text-xs text-white rounded-sm shadow-sm' onClick={() => { setVisibleDemand(true) }}>Create Demands</button>
             </div>
             <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 p-4'>
 
