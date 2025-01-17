@@ -1,9 +1,11 @@
 
+import ClipLoader from "react-spinners/ClipLoader";
+
 const Spinner = () => {
     return (
-        <>
-            <h2 className="text-4xl text-center w-full align-middle">Loading...</h2>
-        </>
+        <div className="h-screen flex flex-row items-center justify-center">
+            <ClipLoader />
+        </div>
     );
 }
 

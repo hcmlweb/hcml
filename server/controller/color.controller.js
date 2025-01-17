@@ -1,31 +1,29 @@
-const Color=require('../model/color.model')
+const Color = require('../model/color.model')
 
-const getAllColor = async (req,res)=>{
+const getAllColor = async (req, res) => {
     try {
-        const getAllColor=await Color.find()
+        const getAllColor = await Color.find()
         res.status(201).json(getAllColor)
     } catch (error) {
-        res.status(404).json({massage:"Not Found"})
+        res.status(404).json({ massage: "Not Found" })
     }
 }
 
 
 
-const createNewColor=async(req,res)=>{
+const createNewColor = async (req, res) => {
     try {
         const { colorName,
-                colorQty,
-               } =req.body;
+            colorQty,
+        } = req.body;
 
-            const newColor= new Color({
-                colorName,
-                colorQty,
-                date: new Date()
-            })
-        const createColor= await newColor.save()
+        const newColor = new Color({
+            colorName,
+            colorQty,
+            date: new Date()
+        })
+        const createColor = await newColor.save()
         res.statue(201).json(createColor)
-
-
     } catch (error) {
         res.status(500).json(error)
     }
@@ -33,4 +31,4 @@ const createNewColor=async(req,res)=>{
 
 
 
-module.exports={getAllColor, createNewColor}
+module.exports = { getAllColor, createNewColor }
