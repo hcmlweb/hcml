@@ -12,8 +12,9 @@ const lotRoute = require('./router/lot.route')
 const userRoute = require('./router/user.router')
 const fabricRoute = require('./router/fabric.route')
 const partyRoute = require('./router/party.route')
-const dyeingRoute=require('./router/dyeing.route')
-const dcolorRouter=require('./router/d.color.route')
+const dyeingRoute = require('./router/dyeing.route')
+const dcolorRouter = require('./router/d.color.route')
+const demandRouter = require('./router/demand.route')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -34,6 +35,7 @@ app.use('/api/fabric', fabricRoute)
 app.use('/api/party', partyRoute)
 app.use('/api/dyeing', dyeingRoute)
 app.use('/api/dcolor', dcolorRouter)
+app.use('/api/demand', demandRouter)
 
 
 
