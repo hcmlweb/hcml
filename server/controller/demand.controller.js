@@ -14,7 +14,17 @@ const getAllDemand = async (req, res) => {
 const createDemand = async (req, res) => {
 
     try {
-        const { demands } = req.body;
+        const {
+            demands,
+            memoNumber,
+            lotNumber,
+            partyName,
+            availableGriege,
+            dayingAmout,
+            disignName,
+            disignColor,
+            masterName,
+        } = req.body;
         for (let item of demands) {
             const color = await Color.findOne({ colorName: item.colorName })
             if (color) {
@@ -23,7 +33,17 @@ const createDemand = async (req, res) => {
             }
         }
 
-        const colorDemand = new Demand({ demands })
+        const colorDemand = new Demand({
+            demands,
+            memoNumber,
+            lotNumber,
+            partyName,
+            availableGriege,
+            dayingAmout,
+            disignName,
+            disignColor,
+            masterName,
+        })
         const saveDemand = await colorDemand.save()
 
         res.status(201).json(saveDemand)
