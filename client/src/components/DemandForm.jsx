@@ -61,7 +61,7 @@ const DemandForm = ({ setVisibleDemand }) => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ demands, memoNumber, lotNumber, partyName, availableGriege, dayingAmout, disignName, disignColor, masterName })
+                body: JSON.stringify({ demands, memoNumber, lotNumber, partyName, dayingAmout, disignName, disignColor, masterName })
             })
             setVisibleDemand(false)
         } catch (error) {
