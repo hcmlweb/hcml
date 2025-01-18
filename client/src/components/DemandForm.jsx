@@ -61,9 +61,9 @@ const DemandForm = ({ setVisibleDemand }) => {
                     </select>
                     <label className="col-span-1">Enter Amount </label>
                     <input
-                        name="amount"
+                        name="colorQty"
                         placeholder="Amount"
-                        value={demand.amount}
+                        value={demand.colorQty}
                         onChange={(event) => handleInputChange(index, event)}
                     />
                 </div>
