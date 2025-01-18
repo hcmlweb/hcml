@@ -43,11 +43,15 @@ const DemandForm = ({ setVisibleDemand }) => {
     }
     return (
         <form onSubmit={handleSubmit}>
+            <div className="flex flex-col items-center justify-center py-4">
+                <h2 className="px-4 py-2 text-sm border-[1px] rounded-md shadow-md border-orange-600">Dying Demand Form</h2>
+            </div>
+           
             {demands.map((demand, index) => (
-                <div key={index} className="grid grid-cols-4 gap-8">
+                <div key={index} className="grid grid-cols-1 sm:grid-cols-4 sm:gap-8 px-2 sm:px-8">
 
-                    <label className="col-span-1">Select Color</label>
-                    <select className="col-span-1"
+                    <label className="col-span-1 py-2 ">Color{` ${index + 1}`}</label>
+                    <select className="col-span-1  border-[1px] border-gray-800 my-1"
                         name="colorName"
                         placeholder="Color Name"
                         value={demand.colorName}
@@ -60,7 +64,8 @@ const DemandForm = ({ setVisibleDemand }) => {
                         })}
                     </select>
                     <label className="col-span-1">Enter Amount </label>
-                    <input
+                    <input 
+                        className="col-span-1 border-[1px] border-gray-800 my-1 px-4"
                         name="colorQty"
                         placeholder="Amount"
                         value={demand.colorQty}
@@ -68,8 +73,10 @@ const DemandForm = ({ setVisibleDemand }) => {
                     />
                 </div>
             ))}
-            <button type="button" onClick={handleAddFields}>Add More</button>
-            <button type="submit">Submit</button>
+            <div className="flex flex-row items-start justify-start space-x-2 py-4">
+            <button type="button" onClick={handleAddFields} className="px-4 py-2 bg-blue-500 text-white shadow-md font-semibold text-sm rounded-md hover:bg-blue-600">Add More</button>
+            <button type="submit" className="px-4 py-2 bg-orange-500 text-white shadow-md font-semibold text-sm rounded-md hover:bg-orange-600">Submit</button>
+            </div>
         </form>
     );
 }
