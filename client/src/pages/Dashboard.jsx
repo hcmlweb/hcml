@@ -120,7 +120,7 @@ function Dashboard() {
             </ul>
             {collectDemand.map((item, i) => {
               return (
-                <ul className={`w-full px-4 py-1 ${i % 2 ? "bg-white" : "bg-gray-300"}  grid grid-cols-7 item-center justify-between uppercase text-xs md:text-sm font-semibold`}>
+                <ul className={`w-full px-4 py-1 ${i % 2 ? "bg-white" : "bg-gray-300"}  grid grid-cols-7 item-center justify-between uppercase text-xs md:text-sm`}>
                   <li className='col-span-1'>{item.lotNumber}</li>
                   <li className='col-span-1'>{item.partyName}</li>
                   <li className='col-span-1'>{item.memoNumber}</li>
