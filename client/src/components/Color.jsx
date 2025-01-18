@@ -19,9 +19,6 @@ function Color() {
             .then(color => setColors(color))
     }, [])
 
-    useEffect(() => {
-        console.log('color')
-    }, [colors])
     const handelOpenModal = () => {
         setVisible(true)
     }

@@ -35,12 +35,24 @@ const DemandForm = ({ setVisibleDemand }) => {
         fetch('https://hcml-d4nk.vercel.app/api/dcolor')
             .then(res => res.json())
             .then(data => setData(data))
+
     }, [])
+
     useEffect(() => {
         fetch('https://hcml-d4nk.vercel.app/api/lot')
             .then(res => res.json())
             .then(lot => setLot(lot))
     }, [])
+
+    useEffect(() => {
+        lot.map(item => {
+            if (item.lotNumber == lotNumber) {
+                setAvailableGriege(item.totalFabrics)
+                setPartyName(item.partyName)
+            }
+        })
+    }, [lotNumber])
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -65,7 +77,7 @@ const DemandForm = ({ setVisibleDemand }) => {
             <div className="w-full grid grid-cols-1 gap-2 md:grid-cols-2  item-center justify-center p-4 border-b-[4px] border-black border-double">
                 <div className="w-full grid grid-cols-2 col-span-1">
                     <label htmlFor="prtyname" className="col-span-1">Enter Memo Number</label>
-                    <input type="text" id="prtyname" className="border-[1px] border-gray-800 px-1 col-span-1" />
+                    <input type="text" id="prtyname" className="border-[1px] border-gray-800 px-1 col-span-1" onChange={(e) => { setMemoNumber(e.target.value) }} />
                 </div>
 
                 <div className="grid grid-cols-2 col-span-1">
@@ -81,7 +93,7 @@ const DemandForm = ({ setVisibleDemand }) => {
                 </div>
                 <div className="grid grid-cols-2 col-span-1">
                     <label htmlFor="prtyname" className="col-span-1">Party Name</label>
-                    <p id="prtyname" className="col-span-1 px-4 py-2 border-[1px] border-blue-500 shadow-md" onChange={(e) => { setPartyName(e.target.value) }}>{lot.map(item => {
+                    <p id="prtyname" className="col-span-1 px-4 py-2 border-[1px] border-blue-500 shadow-md">{lot.map(item => {
                         if (item.lotNumber == lotNumber) {
                             return item.partyName
                         }
@@ -90,11 +102,8 @@ const DemandForm = ({ setVisibleDemand }) => {
                 </div>
                 <div className="grid grid-cols-2 col-span-1">
                     <label htmlFor="prtyname" className="col-span-1">AvailAble Griege For Dying</label>
-                    <p id="prtyname" className="col-span-1 px-4 py-2 border-[1px] border-blue-500 shadow-md" onChange={(e) => { setAvailableGriege(e.target.value) }}>{lot.map(item => {
-                        if (item.lotNumber == lotNumber) {
-                            return item.totalFabrics
-                        }
-                    })}</p>
+                    <p id="prtyname" className="col-span-1 px-4 py-2 border-[1px] border-blue-500 shadow-md" onChange={(e) => { console.log(e.target.value, "hello") }} >{availableGriege}</p>
+
                 </div>
                 <div className="w-full grid grid-cols-2 col-span-1">
                     <label htmlFor="prtyname" className="col-span-1">Enter Amount For Daying</label>
@@ -114,7 +123,8 @@ const DemandForm = ({ setVisibleDemand }) => {
                 </div>
                 <div className="grid grid-cols-2 col-span-1">
                     <label htmlFor="prtyname" className="col-span-1">Select Master</label>
-                    <select id="prtyname" className="border-[1px] border-gray-800 px-1 col-span-1 uppercase" onChange={(e) => { setMasterName(e.target.value) }}>
+                    <select id="prtyname" className="border-[1px] border-gray-800 px-1 col-span-1 uppercase" onChange={(e) => { setMasterName(e.target.value || "Monayem") }}>
+                        <option>--Select Master--</option>
                         <option>Monayem</option>
                         <option>Munna</option>
                         <option>Hakim</option>
