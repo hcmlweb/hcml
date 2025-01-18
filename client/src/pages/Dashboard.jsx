@@ -112,11 +112,11 @@ function Dashboard() {
             <ul className='w-full px-4 py-1 bg-green-500 text-white grid grid-cols-8 item-center justify-between uppercase text-xs md:text-sm font-semibold'>
               <li className='col-span-1'>lot number</li>
               <li className='col-span-2'>party name</li>
-              <li className='col-span-1'>memo Number</li>
-              <li className='col-span-1'>dying griege</li>
-              <li className='col-span-1'>dying color</li>
-              <li className='col-span-1'>dying design</li>
-              <li className='col-span-1'>dying by</li>
+              <li className='col-span-1'>memo</li>
+              <li className='col-span-1'>griege</li>
+              <li className='col-span-1'>color</li>
+              <li className='col-span-1'>design</li>
+              <li className='col-span-1'>raised by</li>
             </ul>
             {collectDemand.map((item, i) => {
               return (
