@@ -34,7 +34,7 @@ const DemandForm = ({ setVisibleDemand }) => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(demands)
+                body: JSON.stringify({demands})
             })
             setVisibleDemand(false)
         } catch (error) {
