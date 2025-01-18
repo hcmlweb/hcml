@@ -15,6 +15,7 @@ function Dashboard() {
   const [dpage, setDpage] = useState(true)
   const location = useLocation()
   const [lot, setLot] = useState([])
+  const [collectDemand, setCollectDemand] = useState([])
 
 
   const date = new Date()
@@ -30,7 +31,11 @@ function Dashboard() {
       .catch(err => console.log(err))
   }, [])
 
-
+  useEffect(() => {
+    fetch('https://hcml-d4nk.vercel.app/api/demand')
+      .then(res => res.json())
+      .then(data => setCollectDemand(data))
+  }, [])
   useEffect(() => {
     if (location.pathname === '/') {
       setDpage(false)
@@ -55,7 +60,7 @@ function Dashboard() {
         <div className="uppercase">
           <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">Dashboard</h2>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 item-cemter justify-between mt-2 md:gap-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 item-cemter justify-between mt-2 md:gap-4 py-4'>
           <div className='col-span-1 flex flex-col items-center justify-center'>
             <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-blue-500'>Todays Griege In</h2>
             <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-blue-600 text-white text-center text-xs sm:text-sm'>
@@ -99,8 +104,33 @@ function Dashboard() {
                 )
               }
             })}
-
-
+          </div>
+        </div>
+        <div className='w-full flex flex-col items-center justify-center mt-4'>
+          <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">Dyeing Today</h2>
+          <div className='py-2 w-full'>
+            <ul className='w-full px-4 py-1 bg-green-500 text-white grid grid-cols-7 item-center justify-between uppercase text-xs md:text-sm font-semibold'>
+              <li className='col-span-1'>lot number</li>
+              <li className='col-span-1'>party name</li>
+              <li className='col-span-1'>memo Number</li>
+              <li className='col-span-1'>dying griege</li>
+              <li className='col-span-1'>dying color</li>
+              <li className='col-span-1'>dying design</li>
+              <li className='col-span-1'>dying by</li>
+            </ul>
+            {collectDemand.map((item, i) => {
+              return (
+                <ul className={`w-full px-4 py-1 ${i % 2 ? "bg-white" : "bg-gray-300"}  grid grid-cols-7 item-center justify-between uppercase text-xs md:text-sm font-semibold`}>
+                  <li className='col-span-1'>{item.lotNumber}</li>
+                  <li className='col-span-1'>{item.partyName}</li>
+                  <li className='col-span-1'>{item.memoNumber}</li>
+                  <li className='col-span-1'>{item.dayingAmout}</li>
+                  <li className='col-span-1'>{item.disignColor}</li>
+                  <li className='col-span-1'>{item.disignName}</li>
+                  <li className='col-span-1'>{item.masterName}</li>
+                </ul>
+              )
+            })}
 
           </div>
         </div>
