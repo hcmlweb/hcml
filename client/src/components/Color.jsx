@@ -22,14 +22,18 @@ function Color() {
     const handelOpenModal = () => {
         setVisible(true)
     }
+    const handelCloseModal = () => {
+        setVisible(false)
+        setVisibleDemand(false)
+    }
 
 
     return (
         <div className='w-full flex flex-col items-center justify-center'>
-            <Modal isOpen={visible}>
+            <Modal isOpen={visible} onRequestClose={handelCloseModal}>
                 <ColorModel setVisible={setVisible} />
             </Modal>
-            <Modal isOpen={visibleDemand}>
+            <Modal isOpen={visibleDemand}  onRequestClose={handelCloseModal}>
                 <DemandForm setVisibleDemand={setVisibleDemand} />
             </Modal>
             <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md">Color Management</h2>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IoCloseOutline } from "react-icons/io5";
 
 
 
@@ -107,7 +108,7 @@ const DemandForm = ({ setVisibleDemand }) => {
                 </div>
                 <div className="w-full grid grid-cols-2 col-span-1">
                     <label htmlFor="prtyname" className="col-span-1">Enter Amount For Daying</label>
-                    <input type="text" id="prtyname" className="border-[1px] border-gray-800 px-1 col-span-1" onChange={(e) => { setDayingAmout(e.target.value) }} />
+                    <input type="number" id="prtyname" className="border-[1px] border-gray-800 px-1 col-span-1" onChange={(e) => { setDayingAmout(e.target.value) }} />
                 </div>
                 <div className="w-full grid grid-cols-2 col-span-1">
                     <label htmlFor="prtyname" className="col-span-1">Enter A Design</label>

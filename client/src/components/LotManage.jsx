@@ -9,6 +9,7 @@ function LotManage() {
   const [msg, setMsg] = useState("")
   const [lot, setLot] = useState([])
   const [check, setCheck] = useState(false)
+  const [dying, setDying] = useState([])
 
 
 
@@ -17,6 +18,11 @@ function LotManage() {
       .then(res => res.json())
       .then(data => setLot(data))
   }, [fabricAmount])
+  useEffect(() => {
+    fetch(`https://hcml-d4nk.vercel.app/api/demand`)
+      .then(res => res.json())
+      .then(data => setDying(data))
+  }, [])
 
   const handelClick = async (e) => {
     setIsLoading(true)
@@ -38,6 +44,8 @@ function LotManage() {
   }
 
   const { id } = useParams()
+
+
   return (
     <>
       {isLoading ? <h2>Loading</h2> :
@@ -52,8 +60,22 @@ function LotManage() {
                       <h2 className='text-sm md:text-3xl py-1 px-2 mr-2'>Party Name:<span className='pl-2'>{item.partyName}</span></h2>
                     </div>
                     <div className='w-full flax flax-col md:grid md:grid-cols-2 gap-4 p-2'>
-                     <div className='md:col-span-1'></div>
-                     <div className='md:col-span-1'></div>
+                     <div className='md:col-span-1'>
+                      <ul>
+                        <li>Total Griege</li>
+                        <li>Total Daying</li>
+                        <li>Total Delivery</li>
+                        <li>Shortage of this Lot</li>
+                      </ul>
+                     </div>
+                     <div className='md:col-span-1'>
+                     <ul>
+                        <li>{item.totalFabrics}</li>
+                        <li>{0}</li>
+                        <li>{item.deliverFabrics}</li>
+                        <li>{Math.ceil((item.totalFabrics - item.deliverFabrics) * 100 / item.totalFabrics)} %</li>
+                      </ul>
+                     </div>
                     </div>
                   </div>
                 )
