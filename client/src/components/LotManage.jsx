@@ -45,6 +45,17 @@ function LotManage() {
 
   const { id } = useParams()
 
+  const totalDyingAmounts=(data)=>{
+    return(data.reduce(acc,item)=>{
+      if(!acc[item.lotNumber]){
+        acc[item.lotNumber]=0
+      }
+      acc[item.lotNumber]+=item.dayinAmunt;
+      return acc
+    },{})
+  }
+
+const dyeingAmountFind=totalDyingAmounts(dying)
 
   return (
     <>
@@ -71,7 +82,11 @@ function LotManage() {
                      <div className='md:col-span-1'>
                      <ul>
                         <li>{item.totalFabrics}</li>
-                        <li>{0}</li>
+                        <li>{Object.keys(dyeingAmountFind).map((dye)=>{
+                    if(dye.lotNumber==item.lotNumber){
+                      return dye.dayingAmunt
+                    }
+                        })}</li>
                         <li>{item.deliverFabrics}</li>
                         <li>{Math.ceil((item.totalFabrics - item.deliverFabrics) * 100 / item.totalFabrics)} %</li>
                       </ul>
