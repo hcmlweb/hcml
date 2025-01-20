@@ -50,7 +50,7 @@ function LotManage() {
       if(!acc[item.lotNumber]){
         acc[item.lotNumber]=0
       }
-      acc[item.lotNumber]+=item.dayinAmunt;
+      acc[item.lotNumber]+=item.dayingAmout;
       return acc
     },{})
   }
@@ -84,7 +84,7 @@ const dyeingAmountFind=totalDyingAmounts(dying)
                         <li>{item.totalFabrics}</li>
                         <li>{Object.keys(dyeingAmountFind).map((dye)=>{
                     if(dye.lotNumber==item.lotNumber){
-                      return dye.dayingAmunt
+                      return dye.dayingAmout
                     }
                         })}</li>
                         <li>{item.deliverFabrics}</li>
