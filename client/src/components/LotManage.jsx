@@ -80,8 +80,8 @@ function LotManage() {
                           <span className="pl-2">{item.partyName}</span>
                         </h2>
                       </div>
-                      <div className="w-full flax flax-col md:grid md:grid-cols-2 gap-4 p-2">
-                        <div className="md:col-span-1">
+                      <div className="w-full grid grid-cols-2 gap-4 p-2">
+                        <div className="col-span-1">
                           <ul>
                             <li>Total Griege</li>
                             <li>Total Daying</li>
@@ -89,7 +89,7 @@ function LotManage() {
                             <li>Shortage of this Lot</li>
                           </ul>
                         </div>
-                        <div className="md:col-span-1">
+                        <div className="col-span-1">
                           <ul>
                             <li>{item.totalFabrics}</li>
                             <li>
