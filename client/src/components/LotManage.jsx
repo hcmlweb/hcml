@@ -82,11 +82,7 @@ const dyeingAmountFind=totalDyingAmounts(dying)
                      <div className='md:col-span-1'>
                      <ul>
                         <li>{item.totalFabrics}</li>
-                        <li>{Object.keys(dyeingAmountFind).map((dye)=>{
-                    if(dye.lotNumber==item.lotNumber){
-                      return dye.dayingAmout
-                    }
-                        })}</li>
+                        <li>{Object.keys(dyeingAmountFind).map((dye)=>{return dyeingAmountFind[dye[item.lotNumber]]})}</li>
                         <li>{item.deliverFabrics}</li>
                         <li>{Math.ceil((item.totalFabrics - item.deliverFabrics) * 100 / item.totalFabrics)} %</li>
                       </ul>
