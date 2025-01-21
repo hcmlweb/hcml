@@ -3,18 +3,20 @@ const fabricSchema = require('./fabric.schema');
 const deliverySchema = require("./delivery.schema");
 
 const lotSchema = mongoose.Schema({
-    lotNumber: Number,
-    lotStatus: String,
     partyName: String,
+    lotNumber: Number,
+    griegeLength:Number,
+    finishingLength:Number,
     totalFabrics: Number,
+    totalReceivedThan:Number,
+    totalDeliveredThan:Number,
+    lotStatus: String,
     deliverFabrics: Number,
     availableFabrics: Number,
+    availableThan:Number,
     date: Date,
     fabrics: [fabricSchema],
     deliveryFabrics: [deliverySchema],
-
-
-
 })
 
 module.exports = lotSchema;

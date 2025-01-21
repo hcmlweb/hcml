@@ -18,11 +18,16 @@ const getAllLot = async (req, res) => {
 
 const createLot = async (req, res) => {
     try {
-        const { lotNumber, partyName, date } = req.body;
+        const {date, lotNumber, partyName, griegeLength, finishingLength, totalFabrics, totalReceivedThan,  } = req.body;
         const newLot = new Lot({
             lotNumber,
             partyName,
-            totalFabrics: 0,
+            griegeLength,
+            finishingLength,
+            totalFabrics,
+            deliverFabrics: 0,
+            totalReceivedThan,
+            totalDeliveredThan:0,
             deliverFabrics: 0,
             availableFabrics: 0,
             lotStatus: "Receive Griege",
