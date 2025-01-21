@@ -11,8 +11,6 @@ const LotForm = () => {
     const [totalReceivedThan, setTotalReceivedThan]=useState(0)
 
     const [date, setDate] = useState('')
-
-
     const [data, setData] = useState([])
     const [msg, setMsg] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -68,7 +66,6 @@ const isosTime=newLocalDate.toLocaleString()
                         <select onChange={(e) => { setPartyName(e.target.value) }}>
                             <option>--Select One--</option>
                             {data.map(party => { return (<option key={party._id}>{party.partyName}</option>) })}
-                            {console.log(isosTime)}
                         </select>
                     </div>
                     <div className="w-full border-[1px] border-gray-400 p-4 grid grid-cols-2">

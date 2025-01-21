@@ -60,46 +60,36 @@ function Dashboard() {
         <div className="uppercase">
           <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">Dashboard</h2>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 item-cemter justify-between mt-2 md:gap-4 py-4'>
+        <div className='grid grid-cols-1 item-cemter justify-between mt-2 md:gap-4 py-4'>
           <div className='col-span-1 flex flex-col items-center justify-center'>
             <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-blue-500'>Todays Griege In</h2>
-            <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-blue-600 text-white text-center text-xs sm:text-sm'>
+            <ul className='w-full grid grid-cols-12 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-blue-600 text-white text-center text-xs sm:text-sm'>
+              <li className='col-span-1'>Date</li>
               <li className='col-span-1'>Lot Number</li>
               <li className='col-span-1'>Party Name</li>
+              <li className='col-span-1'>Griege Length</li>
+              <li className='col-span-1'>Finishing Length</li>
               <li className='col-span-1'>Griege Amount</li>
               <li className='col-span-1'>Than Qty</li>
+              <li className='col-span-1'>Total Delivery</li>
+              <li className='col-span-1'>Remainig For Delivery</li>
+              <li className='col-span-1'>Lot Status</li>
             </ul>
             {lot.map(party => {
               const collectDate = new Date(party.date).toLocaleDateString()
               if (collectDate === newDate) {
                 return (
-                  <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-blue-600 border-t-0 border-b-[1px]  text-center text-xs sm:text-sm'>
+                  <ul className='w-full grid grid-cols-12 items-center justify-center border-x-[1px] border-y-0 border-blue-600 border-t-0 border-b-[1px]  text-center text-xs sm:text-sm'>
+                    <li className=' pl-[1px] col-span-1'>{new Date(party.date).toLocaleDateString()}</li>
                     <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
                     <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
+                    <li className=' pl-[1px] col-span-1'>{party.griegeLength}</li>
+                    <li className=' pl-[1px] col-span-1'>{party.finishingLength}</li>
                     <li className=' pl-[1px] col-span-1'>{party.totalFabrics}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.fabrics.reduce((total, than) => total + than.thanQty, 0)}</li>
-                  </ul>
-                )
-              }
-            })}
-          </div>
-          <div className='col-span-1 mt-2 md:mt-0 flex flex-col items-center justify-center'>
-            <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-orange-500'>Todays Griege Out</h2>
-            <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-orange-600 text-white text-center text-xs sm:text-sm'>
-              <li className='col-span-1'>Lot Number</li>
-              <li className='col-span-1'>Party Name</li>
-              <li className='col-span-1'>Griege Amount</li>
-              <li className='col-span-1'>Than Qty</li>
-            </ul>
-            {lot.map(party => {
-              const collectDate = new Date(party.date).toLocaleDateString()
-              if (collectDate === newDate && party.lotStatus === "Delivery Running") {
-                return (
-                  <ul className='w-full grid grid-cols-4 items-center justify-center border-x-[1px] border-y-0 border-orange-600 border-t-0 border-b-[1px]  text-center text-xs sm:text-sm'>
-                    <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.deliveryFabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.deliveryFabrics.reduce((total, than) => total + than.thanQty, 0)}</li>
+                    <li className=' pl-[1px] col-span-1'>{party.totalReceivedThan}</li>
+                    <li className=' pl-[1px] col-span-1'>{party.deliverFabrics}</li>
+                    <li className=' pl-[1px] col-span-1'>{party.totalFabrics-party.deliverFabrics}</li>
+                    <li className=' pl-[1px] col-span-1'>{party.lotStatus}</li>
                   </ul>
                 )
               }

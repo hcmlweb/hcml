@@ -12,7 +12,6 @@ const lotSchema = mongoose.Schema({
     totalDeliveredThan:Number,
     lotStatus: String,
     deliverFabrics: Number,
-    availableFabrics: Number,
     availableThan:Number,
     date: Date,
     fabrics: [fabricSchema],
