@@ -1,5 +1,6 @@
 const Demand = require('../model/color.demand.model')
 const Color = require('../model/color.model')
+const Lot = require('../model/lot.model')
 
 
 const getAllDemand = async (req, res) => {
@@ -24,6 +25,10 @@ const createDemand = async (req, res) => {
             disignColor,
             masterName,
         } = req.body;
+
+        const updateLotStatus= await Lot.find({lotNumber})
+        updateLotStatus.lotStatus="Dyeing"
+        await updateLotStatus.save()
         for (let item of demands) {
             const color = await Color.findOne({ colorName: item.colorName })
             if (color) {

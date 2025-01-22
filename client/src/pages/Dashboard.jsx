@@ -114,7 +114,7 @@ const dyeingAmountFind = totalDyingAmounts(collectDemand);
                                   party.totalFabrics
                               )}{' '}
                               %</li>
-                    <li className='col-span-2 py-[2px]'><span className={`${party.lotStatus=="Receive Griege"? "bg-green-500":"bg-blue-500"} px-[6px] py-[2px] rounded-full text-white text-xs`}>{party.lotStatus}</span></li>
+                    <li className='col-span-2 py-[2px]'><span className={`${party.lotStatus=="Receive Griege"? "bg-green-500": party.lotStatus=='Delivery Running'? "bg-blue-500" : "bg-orange-500"} px-[6px] py-[2px] rounded-full text-white text-xs`}>{party.lotStatus}</span></li>
                   </ul>
                 )
               }
