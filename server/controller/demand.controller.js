@@ -26,8 +26,7 @@ const createDemand = async (req, res) => {
             masterName,
         } = req.body;
 
-        const updateLotStatus= await Lot.find({lotNumber})
-        updateLotStatus.lotStatus="Dyeing"
+        
         await updateLotStatus.save()
         for (let item of demands) {
             const color = await Color.findOne({ colorName: item.colorName })
@@ -47,6 +46,8 @@ const createDemand = async (req, res) => {
             disignColor,
             masterName,
         })
+        const updateLotStatus= await Lot.findOne({lotNumber:lotNumber})
+        updateLotStatus.lotStatus="Dyeing"
         const saveDemand = await colorDemand.save()
 
         res.status(201).json(saveDemand)
