@@ -21,9 +21,6 @@ function Dashboard() {
   const date = new Date()
   const newDate = date.toLocaleDateString()
 
-
-
-
   useEffect(() => {
     fetch("https://hcml-d4nk.vercel.app/api/lot")
       .then(res => res.json())
@@ -31,11 +28,29 @@ function Dashboard() {
       .catch(err => console.log(err))
   }, [])
 
-  useEffect(() => {
-    fetch('https://hcml-d4nk.vercel.app/api/demand')
-      .then(res => res.json())
-      .then(data => setCollectDemand(data))
-  }, [])
+// ===================Dying Find=========================
+
+useEffect(() => {
+  fetch('https://hcml-d4nk.vercel.app/api/demand')
+    .then(res => res.json())
+    .then(data => setCollectDemand(data))
+}, [])
+
+const totalDyingAmounts = (data) => {
+  return data.reduce((acc, item) => {
+    if (!acc[item.lotNumber]) {
+      acc[item.lotNumber] = { lotNumber: item.lotNumber, totalAmount: 0 };
+    }
+    acc[item.lotNumber].totalAmount += item.dayingAmout;
+    return acc;
+  }, {});
+};
+
+const dyeingAmountFind = totalDyingAmounts(collectDemand);
+
+// =================Dying End=================
+
+
   useEffect(() => {
     if (location.pathname === '/') {
       setDpage(false)
@@ -62,34 +77,44 @@ function Dashboard() {
         </div>
         <div className='grid grid-cols-1 item-cemter justify-between mt-2 md:gap-4 py-4'>
           <div className='col-span-1 flex flex-col items-center justify-center'>
-            <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-blue-500'>Todays Griege In</h2>
+            <h2 className='w-full px-2 py-1 font-medium text-sm shadow-md  text-center uppercase border-[1px] border-blue-500'>All Lot status</h2>
             <ul className='w-full grid grid-cols-12 items-center justify-center border-x-[1px] border-y-0 border-gray-800 bg-blue-600 text-white text-center text-xs sm:text-sm'>
               <li className='col-span-1'>Date</li>
               <li className='col-span-1'>Lot Number</li>
-              <li className='col-span-1'>Party Name</li>
-              <li className='col-span-1'>Griege Length</li>
-              <li className='col-span-1'>Finishing Length</li>
-              <li className='col-span-1'>Griege Amount</li>
+              <li className='col-span-2'>Party Name</li>
               <li className='col-span-1'>Than Qty</li>
+              <li className='col-span-1'>Total Griege</li>
+              <li className='col-span-1'>Total Dying</li>
               <li className='col-span-1'>Total Delivery</li>
-              <li className='col-span-1'>Remainig For Delivery</li>
-              <li className='col-span-1'>Lot Status</li>
+              <li className='col-span-1'>Delivery Remainig </li>
+              <li className='col-span-1'>Shortage</li>
+              <li className='col-span-2'>Lot Status</li>
             </ul>
-            {lot.map(party => {
+            {lot.map((party, i) => {
               const collectDate = new Date(party.date).toLocaleDateString()
               if (collectDate === newDate) {
                 return (
-                  <ul className='w-full grid grid-cols-12 items-center justify-center border-x-[1px] border-y-0 border-blue-600 border-t-0 border-b-[1px]  text-center text-xs sm:text-sm'>
-                    <li className=' pl-[1px] col-span-1'>{new Date(party.date).toLocaleDateString()}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.lotNumber}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.partyName}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.griegeLength}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.finishingLength}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.totalFabrics}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.totalReceivedThan}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.deliverFabrics}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.totalFabrics-party.deliverFabrics}</li>
-                    <li className=' pl-[1px] col-span-1'>{party.lotStatus}</li>
+                  <ul className={`w-full grid grid-cols-12 items-center justify-center text-center text-xs sm:text-sm ${i % 2 ?"bg-gray-200": "bg-white"}`}>
+                    <li className='col-span-1'>{new Date(party.date).toLocaleDateString()}</li>
+                    <li className='col-span-1'>{party.lotNumber}</li>
+                    <li className='col-span-2'>{party.partyName}</li>
+                    <li className='col-span-1'>{party.totalReceivedThan}</li>
+                    <li className='col-span-1'>{party.totalFabrics}</li>
+                    <li className='col-span-1'> {
+                                dyeingAmountFind[party.lotNumber]
+                                  ? dyeingAmountFind[party.lotNumber].totalAmount
+                                  : 0
+                              }</li>
+                    
+                    <li className='col-span-1'>{party.deliverFabrics}</li>
+                    <li className='col-span-1'>{party.totalFabrics-party.deliverFabrics}</li>
+                    <li className='col-span-1'>{Math.ceil(
+                                ((party.totalFabrics - party.deliverFabrics) *
+                                  100) /
+                                  party.totalFabrics
+                              )}{' '}
+                              %</li>
+                    <li className='col-span-2 py-[2px]'><span className={`${party.lotStatus=="Receive Griege"? "bg-green-500":"bg-blue-500"} px-[6px] py-[2px] rounded-full text-white text-xs`}>{party.lotStatus}</span></li>
                   </ul>
                 )
               }
