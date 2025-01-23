@@ -36,7 +36,7 @@ const Lot = () => {
                 </div>
                 <div className="w-full">
                     <div className="w-full flex flex-row items-start justify-start divide-x-[1px]">
-                        <NavLink to="alllot" className={`active:bg-gray-400 px-4 py-1 bg-gray-300`}>All Lots</NavLink>
+                        <NavLink to="alllot" className={({isActive})=>isActive? "bg-gray-400 px-4 py-1":"bg-gray-300 px-4 py-1"}>All Lots</NavLink>
                         
                         <NavLink to="deliverylots" className=" active:bg-gray-400 px-4 py-1 bg-gray-300">Delivery Lots</NavLink>
                         <NavLink to="closelots" className=" active:bg-gray-400 px-4 py-1 bg-gray-300">Close Lots</NavLink>
