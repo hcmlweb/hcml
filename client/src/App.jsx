@@ -6,6 +6,9 @@ import LotManage from "./components/LotManage"
 import Dashboard from "./pages/Dashboard"
 import Home from "./pages/Home"
 import Color from "./components/Color"
+import AllLots from "./components/grieges/AllLots"
+import DeliveryLots from "./components/grieges/DeliveryLots"
+import CloseLots from "./components/grieges/CloseLots"
 function App() {
 
 
@@ -13,7 +16,11 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Dashboard />}>
-          <Route path="/lot" element={<Lot />} />
+          <Route path="/lot" element={<Lot />}>
+            <Route path="alllot" element={<AllLots />} />
+            <Route path="deliverylots" element={<DeliveryLots />} />
+            <Route path="closelots" element={<CloseLots />} />
+          </Route>
           <Route path="/newlot" element={<LotForm />} />
           <Route path="/party" element={<PartyForm />} />
           <Route path="/lot/:id" element={<LotManage />} />
