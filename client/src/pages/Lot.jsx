@@ -35,7 +35,7 @@ const Lot = () => {
                     <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md">Lot Management</h2>
                 </div>
                 <div className="w-full">
-                    <div className="w-full flex flex-row items-start justify-start divide-x-[1px] border-b-1 border-gray-800">
+                    <div className="w-full flex flex-row items-start justify-start divide-x-[1px] border-b-1 border-gray-800 mt-2">
                         <NavLink to="alllot" className={({isActive})=>isActive? "bg-gray-400 px-4 py-1 rounded-t-md":"bg-gray-300 px-4 py-1 rounded-t-md"}>All Lots</NavLink>
                         
                         <NavLink to="deliverylots" className={({isActive})=>isActive? "bg-gray-400 px-4 py-1 rounded-t-md":"bg-gray-300 px-4 py-1 rounded-t-md"}>Delivery Lots</NavLink>
