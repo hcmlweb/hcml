@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 function AllLots() {
   const [lot, setLot]=useState([])
 
-useEffect(()>={
+useEffect(()=>{
   fetch('https://hcml-d4nk.vercel.app/api/lot')
    .then(res=>res.json())
    .then(data=>setLot(data))
