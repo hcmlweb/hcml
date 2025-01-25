@@ -1,23 +1,22 @@
-import { Routes, Route } from "react-router-dom"
-import Lot from "./pages/Lot"
-import LotForm from "./components/LotForm"
-import PartyForm from "./components/PartyForm"
-import LotManage from "./components/LotManage"
-import Dashboard from "./pages/Dashboard"
-import Home from "./pages/Home"
-import Color from "./components/Color"
-import AllLots from "./components/grieges/AllLots"
-import DeliveryLots from "./components/grieges/DeliveryLots"
-import CloseLots from "./components/grieges/CloseLots"
+import { Routes, Route } from "react-router-dom";
+import Lot from "./pages/Lot";
+import LotForm from "./components/LotForm";
+import PartyForm from "./components/PartyForm";
+import LotManage from "./components/LotManage";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Color from "./components/Color";
+import AllLots from "./components/grieges/AllLots";
+import DeliveryLots from "./components/grieges/DeliveryLots";
+import CloseLots from "./components/grieges/CloseLots";
 function App() {
-
-
   return (
     <>
       <Routes>
         <Route path="/" element={<Dashboard />}>
           <Route path="/lot" element={<Lot />}>
             <Route path="alllot" element={<AllLots />} />
+            <Route path="alllot/:id" element={<LotManage />} />
             <Route path="deliverylots" element={<DeliveryLots />} />
             <Route path="closelots" element={<CloseLots />} />
           </Route>
@@ -28,7 +27,7 @@ function App() {
         </Route>
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
