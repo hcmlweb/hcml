@@ -18,6 +18,17 @@ function LotManage() {
       .then((data) => setDying(data))
       .catch((err) => console.log(err));
   }, []);
+
+  // const handelDeliver = (e) => {
+  //   e.preventDefault();
+  //   fetch(`https://hcml-d4nk.vercel.app/api/lot/deliver/${id}`, {
+  //     method: "post",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({}),
+  //   });
+  // };
   return (
     <div className="p-4">
       {lots.map((lot) => {
@@ -44,9 +55,9 @@ function LotManage() {
                 {dying.map((dye) => {
                   if (lot.lotNumber == dye.lotNumber) {
                     return (
-                      <ul className="grid grid-cols-7 gap-1 item-center justify-between border-[1px] border-gray-300 py-1 px-4 text-sm text-left">
+                      <ul className="grid grid-cols-7 gap-1 item-center justify-between border-[1px] border-gray-300 py-1 px-4 text-sm text-center">
                         <li className="col-span-1">{dye.memoNumber}</li>
-                        <li className="col-span-1">Dying Amount</li>
+                        <li className="col-span-1">{dye.dayingAmout}</li>
                         <li className="col-span-2">
                           {dye.demands.map((color) => {
                             return (
@@ -59,9 +70,9 @@ function LotManage() {
                             );
                           })}
                         </li>
-                        <li className="col-span-1">Design Name</li>
-                        <li className="col-span-1">Color</li>
-                        <li className="col-span-1">Master Name</li>
+                        <li className="col-span-1">{dye.disignName}</li>
+                        <li className="col-span-1">{dye.disignColor}</li>
+                        <li className="col-span-1">{dye.masterName}</li>
                       </ul>
                     );
                   }
@@ -71,7 +82,7 @@ function LotManage() {
                 <h2 className="border-[1px] border-orange-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">
                   Delivery Status
                 </h2>
-                <ul className="grid grid-cols-3 item-centr justify-between text-sm bg-sky-500 text-white mt-2 px-4 py-2 text-center">
+                <ul className="grid grid-cols-3 item-centr justify-between text-sm bg-sky-500 text-white mt-2 px-4 py-2 text-center rounded-t-md">
                   <li className="col-span-1">Demo Pass</li>
                   <li className="col-span-1">Fabric Amount</li>
                   <li className="col-span-1">Than Quantity</li>
@@ -85,6 +96,18 @@ function LotManage() {
                     </ul>
                   );
                 })}
+                <div className="w-full flex flex-row item-center justify-between bg-orange-500 text-white uppercase px-4 py-2 rounded-b-md">
+                  <h3 className="text-sm font-semibold px-4 py-1">
+                    Total Delivery:{" "}
+                    {lot.deliveryFabrics.reduce(
+                      (total, amount) => total + amount.fabricAmount,
+                      0
+                    )}
+                  </h3>
+                  <button className="hover:bg-orange-600 px-4 text-sm font-semibold py-1 border-[1px] border-white rounded-full">
+                    Deliver Griege
+                  </button>
+                </div>
               </div>
             </div>
           );
