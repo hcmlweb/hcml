@@ -77,24 +77,7 @@ const deliveryFabric = async (req, res) => {
         findLotToDeliver.deliveryFabrics.push(newDeliver);
 
         // Update calculations
-        const totalDelivered = findLotToDeliver.deliveryFabrics.reduce(
-            (total, deliver) => total + deliver.fabricAmount,
-            0
-        );
-        findLotToDeliver.deliverFabrics = totalDelivered;
-        findLotToDeliver.availableFabrics = findLotToDeliver.totalFabrics - totalDelivered;
-
-        // Validate available fabrics
-        if (findLotToDeliver.availableFabrics < 0) {
-            return res.status(400).json({ message: "Not enough fabrics available for delivery" });
-        }
-
-        // Update lot status
-        if (findLotToDeliver.availableFabrics === 0) {
-            findLotToDeliver.lotStatus = "Lot Close";
-        } else {
-            findLotToDeliver.lotStatus = "Delivery Running";
-        }
+        
 
         await findLotToDeliver.save();
         res.status(201).json(findLotToDeliver);
