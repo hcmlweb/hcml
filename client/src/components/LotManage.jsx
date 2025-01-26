@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Modal from "react-modal";
+import DeliveryForm from "./DeliveryForm";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 function LotManage() {
   const { id } = useParams();
   const [lots, setLots] = useState([]);
   const [dying, setDying] = useState([]);
+  const [deliveryModal, setDeliveryModal] = useState(false);
 
   useEffect(() => {
     fetch("https://hcml-d4nk.vercel.app/api/lot")
@@ -19,6 +33,9 @@ function LotManage() {
       .catch((err) => console.log(err));
   }, []);
 
+  const handelDeliveryModal = () => {
+    setDeliveryModal(true);
+  };
   // const handelDeliver = (e) => {
   //   e.preventDefault();
   //   fetch(`https://hcml-d4nk.vercel.app/api/lot/deliver/${id}`, {
@@ -104,9 +121,15 @@ function LotManage() {
                       0
                     )}
                   </h3>
-                  <button className="hover:bg-orange-600 px-4 text-sm font-semibold py-1 border-[1px] border-white rounded-full">
+                  <button
+                    onClick={handelDeliveryModal}
+                    className="hover:bg-orange-600 px-4 text-sm font-semibold py-1 border-[1px] border-white rounded-full"
+                  >
                     Deliver Griege
                   </button>
+                  <Modal isOpen={deliveryModal} style={customStyles}>
+                    <DeliveryForm id={id} setDeliveryModal={setDeliveryModal} />
+                  </Modal>
                 </div>
               </div>
             </div>
