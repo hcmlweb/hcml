@@ -11,14 +11,10 @@ const lotSchema = mongoose.Schema({
     totalReceivedThan:Number,
     totalDeliveredThan:Number,
     lotStatus: String,
-    deliverFabrics: Number,
     availableThan:Number,
     date: Date,
     fabrics: [fabricSchema],
-    deliveryFabrics: [{
-        fabricAmount:Number,
-        thanQty:Number
-    }],
+    deliveryFabrics: [deliverySchema],
 })
 
 module.exports = lotSchema;
