@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 function LotManage() {
   const { id } = useParams();
   const [lots, setLots] = useState([]);
+  const [dying, setDying] = useState([]);
 
   useEffect(() => {
     fetch("https://hcml-d4nk.vercel.app/api/lot")
@@ -11,15 +12,79 @@ function LotManage() {
       .then((data) => setLots(data))
       .catch((err) => console.log(err));
   }, []);
+  useEffect(() => {
+    fetch("https://hcml-d4nk.vercel.app/api/demand")
+      .then((res) => res.json())
+      .then((data) => setDying(data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="p-4">
       {lots.map((lot) => {
         if (lot._id == id) {
           return (
-            <div>
+            <div className="w-full flex flex-col item-center justify-center space-y-2">
               <div className="p-4 rounded-lg border-[2px] border-gray-300 uppercase">
                 <h2>Lot Number: {lot.lotNumber}</h2>
                 <h3>Party Name: {lot.partyName}</h3>
+              </div>
+              <div className="w-full flex flex-col space-y-1 item-center justify-center p-4 rounded-lg border-[2px] border-gray-300 uppercase">
+                <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">
+                  Dyeing Status
+                </h2>
+
+                <ul className="grid grid-cols-7 item-centr justify-between text-sm bg-sky-500 text-white mt-2 px-4 py-2 text-center">
+                  <li className="col-span-1">Memo Number</li>
+                  <li className="col-span-1">Dying Amount</li>
+                  <li className="col-span-2">Used Dyes</li>
+                  <li className="col-span-1">Design Name</li>
+                  <li className="col-span-1">Color</li>
+                  <li className="col-span-1">Master Name</li>
+                </ul>
+                {dying.map((dye) => {
+                  if (lot.lotNumber == dye.lotNumber) {
+                    return (
+                      <ul className="grid grid-cols-7 gap-1 item-center justify-between border-[1px] border-gray-300 py-1 px-4 text-sm text-left">
+                        <li className="col-span-1">{dye.memoNumber}</li>
+                        <li className="col-span-1">Dying Amount</li>
+                        <li className="col-span-2">
+                          {dye.demands.map((color) => {
+                            return (
+                              <ul className="grid grid-cols-2 text-left border-[1px] border-gray-400 px-4 py-1">
+                                <li className="col-span-1">
+                                  {color.colorName}
+                                </li>
+                                <li className="col-span-1">{color.colorQty}</li>
+                              </ul>
+                            );
+                          })}
+                        </li>
+                        <li className="col-span-1">Design Name</li>
+                        <li className="col-span-1">Color</li>
+                        <li className="col-span-1">Master Name</li>
+                      </ul>
+                    );
+                  }
+                })}
+              </div>
+              <div>
+                <h2 className="border-[1px] border-orange-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">
+                  Delivery Status
+                </h2>
+                <ul className="grid grid-cols-3 item-centr justify-between text-sm bg-sky-500 text-white mt-2 px-4 py-2 text-center">
+                  <li className="col-span-1">Demo Pass</li>
+                  <li className="col-span-1">Fabric Amount</li>
+                  <li className="col-span-1">Than Quantity</li>
+                </ul>
+                {lot.deliveryFabrics.map((delivery) => {
+                  return (
+                    <ul className="grid grid-cols-3 text-center border-[1px] border-gray-400 px-4 py-1">
+                      <li className="col-span-1">112233</li>
+                      <li className="col-span-1">{delivery.fabricAmount}</li>
+                      <li className="col-span-1">{delivery.thanQty}</li>
+                    </ul>
+                  );
+                })}
               </div>
             </div>
           );
