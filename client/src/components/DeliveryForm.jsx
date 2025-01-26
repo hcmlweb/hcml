@@ -9,6 +9,12 @@ function DeliveryForm({ id, setDeliveryModal }) {
     e.preventDefault();
     setIsLoading(true);
 
+    if (!fabricAmount || fabricAmount <= 0 || !thanQty || thanQty <= 0) {
+      alert("Please enter valid values.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch(`https://hcml-d4nk.vercel.app/api/lot/deliver/${id}`, {
         method: "POST",
