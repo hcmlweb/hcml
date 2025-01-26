@@ -25,7 +25,6 @@ const createLot = async (req, res) => {
             griegeLength,
             finishingLength,
             totalFabrics,
-            deliverFabrics: 0,
             totalReceivedThan,
             totalDeliveredThan:0,
             deliveryFabrics:[],
@@ -80,7 +79,7 @@ const deliveryFabric = async (req, res) => {
         }
 
         // Add delivery
-        const newDeliver = new Delivery({ fabricAmount, thanQty }); // Assuming proper schema validation
+        const newDeliver = { fabricAmount, thanQty }; // Assuming proper schema validation
         findLotToDeliver.deliveryFabrics.push(newDeliver);
 
         // Update calculations
