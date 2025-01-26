@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 function DeliveryForm({ id, setDeliveryModal }) {
-  const [fabricAmount, setFabricAmount] = useState();
-  const [thanQty, setThanQty] = useState();
+  const [fabricAmount, setFabricAmount] = useState('');
+  const [thanQty, setThanQty] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelivery = async (e) => {
