@@ -80,7 +80,7 @@ const deliveryFabric = async (req, res) => {
         }
 
         // Add delivery
-        const newDeliver = { fabricAmount, thanQty }; // Assuming proper schema validation
+        const newDeliver = new Delivery({ fabricAmount, thanQty }); // Assuming proper schema validation
         findLotToDeliver.deliveryFabrics.push(newDeliver);
 
         // Update calculations
