@@ -39,48 +39,19 @@ const createLot = async (req, res) => {
 
 }
 
-const addFabricToLot = async (req, res) => {
-    try {
-        const { id } = req.params
-        const { fabricAmount, thanQty } = req.body
-        const findLot = await Lot.findOne({ _id: id })
-        const newFabric = new Fabric({
-            fabricAmount,
-            thanQty,
-            date: new Date()
-
-        })
-        await newFabric.save()
-        findLot.fabrics.push(newFabric)
-        findLot.totalFabrics = findLot.fabrics.reduce((total, fabric) => total + fabric.fabricAmount, 0)
-        findLot.availableFabrics = findLot.totalFabrics - findLot.deliverFabrics
-        await findLot.save()
-        res.status(201).json(findLot)
-    } catch (error) {
-        res.status(500).json(error)
-    }
-}
-
-
 const deliveryFabric = async (req, res) => {
     try {
         const { id } = req.params;
         const { fabricAmount, thanQty } = req.body;
 
-
-        const findLotToDeliver = await Lot.findOne({ _id: id });
-
-        
-
+        const findLot = await Lot.findOne({ _id: id });
         // Add delivery
-        const newDeliver = { fabricAmount, thanQty }; // Assuming proper schema validation
-        findLotToDeliver.deliveryFabrics.push(newDeliver);
-
+        const newDeliver = new Delivery({ fabricAmount, thanQty }); // Assuming proper schema validation
+        findLot.deliveryFabrics.push(newDeliver);
         // Update calculations
-        
-
+   
         await findLotToDeliver.save();
-        res.status(201).json(findLotToDeliver);
+        res.status(201).json(findLot);
 
     } catch (error) {
         res.status(500).json({ message: error.message || "Internal Error" });
