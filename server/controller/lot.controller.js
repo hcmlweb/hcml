@@ -28,7 +28,7 @@ const createLot = async (req, res) => {
             deliverFabrics: 0,
             totalReceivedThan,
             totalDeliveredThan:0,
-            deliverFabrics: 0,
+            deliveryFabrics:[],
             lotStatus: "Receive Griege",
             date: new Date(date)
         })
