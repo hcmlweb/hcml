@@ -62,31 +62,53 @@ const addFabricToLot = async (req, res) => {
     }
 }
 
+
 const deliveryFabric = async (req, res) => {
     try {
         const { id } = req.params;
         const { fabricAmount, thanQty } = req.body;
-        const findLotToDeliver = await Lot.findOne({ _id: id })
-        const newDeliver = new Delivery({
-            fabricAmount,
-            thanQty
-        })
-        findLotToDeliver.deliveryFabrics.push(newDeliver)
-        findLotToDeliver.deliverFabrics = findLotToDeliver.deliveryFabrics.reduce((total, deliver) => total + deliver.fabricAmount, 0)
-        findLotToDeliver.availableFabrics = findLotToDeliver.totalFabrics - findLotToDeliver.deliverFabrics
-        if (findLotToDeliver.deliverFabrics != 0) {
-            findLotToDeliver.lotStatus = "Delivery Running"
+
+        // Input validation
+        if (!fabricAmount || fabricAmount <= 0 || !thanQty || thanQty <= 0) {
+            return res.status(400).json({ message: "Invalid input values" });
         }
-        if (findLotToDeliver.availableFabrics == 0) {
-            findLotToDeliver.lotStatus = "Lot Close"
+
+        const findLotToDeliver = await Lot.findOne({ _id: id });
+
+        if (!findLotToDeliver) {
+            return res.status(404).json({ message: "Lot not found" });
         }
-        await findLotToDeliver.save()
-        res.status(201).json(findLotToDeliver)
+
+        // Add delivery
+        const newDeliver = { fabricAmount, thanQty }; // Assuming proper schema validation
+        findLotToDeliver.deliveryFabrics.push(newDeliver);
+
+        // Update calculations
+        const totalDelivered = findLotToDeliver.deliveryFabrics.reduce(
+            (total, deliver) => total + deliver.fabricAmount,
+            0
+        );
+        findLotToDeliver.deliverFabrics = totalDelivered;
+        findLotToDeliver.availableFabrics = findLotToDeliver.totalFabrics - totalDelivered;
+
+        // Validate available fabrics
+        if (findLotToDeliver.availableFabrics < 0) {
+            return res.status(400).json({ message: "Not enough fabrics available for delivery" });
+        }
+
+        // Update lot status
+        if (findLotToDeliver.availableFabrics === 0) {
+            findLotToDeliver.lotStatus = "Lot Close";
+        } else {
+            findLotToDeliver.lotStatus = "Delivery Running";
+        }
+
+        await findLotToDeliver.save();
+        res.status(201).json(findLotToDeliver);
+
     } catch (error) {
-        res.status(500).json({ massage: "Internal Error" })
+        res.status(500).json({ message: error.message || "Internal Error" });
     }
-
-}
-
+};
 
 module.exports = { getAllLot, createLot, addFabricToLot, deliveryFabric }
