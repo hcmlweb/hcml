@@ -45,7 +45,7 @@ const deliveryFabric = async (req, res) => {
         const findLot = await Lot.findOne({ _id: id });
         // Add delivery
         const newDeliver = new Delivery({ fabricAmount, thanQty }); // Assuming proper schema validation
-        findLot.deliveryFabrics.push(newDeliver);
+        findLot.deliveryFabrics.push({newDeliver});
         // Update calculations
    
         await findLot.save();
