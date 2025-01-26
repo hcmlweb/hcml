@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 function DeliveryForm({ id, setDeliveryModal }) {
-  const [fabricAmount, setFabricAmount] = useState();
-  const [thanQty, setThanQty] = useState();
+  const [fabricAmount, setFabricAmount] = useState('');
+  const [thanQty, setThanQty] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handelDelivery = async (e) => {
-    setIsLoading(true);
     e.preventDefault();
+    setIsLoading(true);
     await fetch(`https://hcml-d4nk.vercel.app/api/deliver/${id}`, {
       method: "post",
       body: JSON.stringify({ fabricAmount, thanQty }),
