@@ -26,8 +26,6 @@ const createLot = async (req, res) => {
             finishingLength,
             totalFabrics,
             totalReceivedThan,
-            totalDeliveredThan:0,
-            deliveryFabrics:[],
             lotStatus: "Receive Griege",
             date: new Date(date)
         })
@@ -50,7 +48,7 @@ const deliveryFabric = async (req, res) => {
         findLot.deliveryFabrics.push(newDeliver);
         // Update calculations
    
-        await findLotToDeliver.save();
+        await findLot.save();
         res.status(201).json(findLot);
 
     } catch (error) {
