@@ -5,20 +5,37 @@ function DeliveryForm({ id, setDeliveryModal }) {
   const [thanQty, setThanQty] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handelDelivery = async (e) => {
+  const handleDelivery = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await fetch(`https://hcml-d4nk.vercel.app/api/deliver/${id}`, {
-      method: "post",
-      body: JSON.stringify({ fabricAmount, thanQty }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setTimeout(() => {
+
+    if (!fabricAmount || fabricAmount <= 0 || !thanQty || thanQty <= 0) {
+      alert("Please enter valid values.");
       setIsLoading(false);
-    }, 2000);
-    setDeliveryModal(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://hcml-d4nk.vercel.app/api/deliver/${id}`, {
+        method: "POST",
+        body: JSON.stringify({ fabricAmount, thanQty }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        alert("Delivery successful!");
+        setFabricAmount('');
+        setThanQty('');
+        setDeliveryModal(false);
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+      }
+    } catch (error) {
+      alert("Failed to deliver. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -30,28 +47,27 @@ function DeliveryForm({ id, setDeliveryModal }) {
         <div className="grid grid-cols-2 gap-2">
           <label className="col-span-1">Griege Amount</label>
           <input
-            onChange={(e) => {
-              setFabricAmount(e.target.value);
-            }}
-            className="focus:outline-none border-[1px] border-gray-400 col-span-1"
+            value={fabricAmount}
+            onChange={(e) => setFabricAmount(e.target.value)}
+            className="focus:outline-none border-[1px] border-gray-400 col-span-1 focus:ring-2 focus:ring-orange-500"
             type="number"
           />
         </div>
         <div className="grid grid-cols-2 gap-2">
           <label className="col-span-1">Than Quantity</label>
           <input
-            onChange={(e) => {
-              setThanQty(e.target.value);
-            }}
-            className="focus:outline-none border-[1px] border-gray-400 col-span-1"
+            value={thanQty}
+            onChange={(e) => setThanQty(e.target.value)}
+            className="focus:outline-none border-[1px] border-gray-400 col-span-1 focus:ring-2 focus:ring-orange-500"
             type="number"
           />
         </div>
         <button
-          onClick={handelDelivery}
-          className="bg-orange-500 text-white shadow-sm rounded-md py-2 px-4"
+          onClick={handleDelivery}
+          className="bg-orange-500 text-white shadow-sm rounded-md py-2 px-4 hover:bg-orange-600"
+          disabled={isLoading}
         >
-          Deliver
+          {isLoading ? "Delivering..." : "Deliver"}
         </button>
       </form>
     </div>
