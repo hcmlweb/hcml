@@ -67,16 +67,10 @@ const deliveryFabric = async (req, res) => {
         const { id } = req.params;
         const { fabricAmount, thanQty } = req.body;
 
-        // Input validation
-        if (!fabricAmount || fabricAmount <= 0 || !thanQty || thanQty <= 0) {
-            return res.status(400).json({ message: "Invalid input values" });
-        }
 
         const findLotToDeliver = await Lot.findOne({ _id: id });
 
-        if (!findLotToDeliver) {
-            return res.status(404).json({ message: "Lot not found" });
-        }
+        
 
         // Add delivery
         const newDeliver = { fabricAmount, thanQty }; // Assuming proper schema validation
