@@ -52,7 +52,6 @@ function DeliveryForm({ id, setDeliveryModal }) {
         <div className="grid grid-cols-2 gap-2">
           <label className="col-span-1">Delivery Date</label>
           <input
-            value={date}
             onChange={(e) =>
               setDate(new Date(e.target.value).toLocaleDateString())
             }
