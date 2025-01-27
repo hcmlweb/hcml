@@ -90,15 +90,19 @@ function LotManage() {
                 <h2 className="border-[1px] border-orange-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">
                   Delivery Status
                 </h2>
-                <ul className="grid grid-cols-3 item-centr justify-between text-sm bg-sky-500 text-white mt-2 px-4 py-2 text-center rounded-t-md">
-                  <li className="col-span-1">Demo Pass</li>
+                <ul className="grid grid-cols-4 item-centr justify-between text-sm bg-sky-500 text-white mt-2 px-4 py-2 text-center rounded-t-md">
+                  <li className="col-span-1">Delivery Date</li>
+                  <li className="col-span-1">Gate Pass</li>
                   <li className="col-span-1">Fabric Amount</li>
                   <li className="col-span-1">Than Quantity</li>
                 </ul>
                 {lot.deliveryFabrics.map((delivery) => {
                   return (
-                    <ul className="grid grid-cols-3 text-center border-[1px] border-gray-400 px-4 py-1">
-                      <li className="col-span-1">112233</li>
+                    <ul className="grid grid-cols-4 text-center border-[1px] border-gray-400 px-4 py-1">
+                      <li className="col-span-1">
+                        {new Date(delivery.date).toLocaleDateString}
+                      </li>
+                      <li className="col-span-1">{delivery.getPass}</li>
                       <li className="col-span-1">{delivery.fabricAmount}</li>
                       <li className="col-span-1">{delivery.thanQty}</li>
                     </ul>

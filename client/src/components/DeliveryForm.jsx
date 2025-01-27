@@ -3,6 +3,8 @@ import React, { useState } from "react";
 function DeliveryForm({ id, setDeliveryModal }) {
   const [fabricAmount, setFabricAmount] = useState("");
   const [thanQty, setThanQty] = useState("");
+  const [getPass, setGetePass] = useState("");
+  const [date, setDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelivery = async (e) => {
@@ -20,7 +22,7 @@ function DeliveryForm({ id, setDeliveryModal }) {
         `https://hcml-d4nk.vercel.app/api/lot/deliver/${id}`,
         {
           method: "POST",
-          body: JSON.stringify({ fabricAmount, thanQty }),
+          body: JSON.stringify({ date, getPass, fabricAmount, thanQty }),
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -47,6 +49,26 @@ function DeliveryForm({ id, setDeliveryModal }) {
         Deliver Griege
       </h2>
       <form className="flex flex-col space-y-2">
+        <div className="grid grid-cols-2 gap-2">
+          <label className="col-span-1">Delivery Date</label>
+          <input
+            value={date}
+            onChange={(e) =>
+              setDate(new Date(e.target.value).toLocaleDateString())
+            }
+            className="focus:outline-none border-[1px] border-gray-400 col-span-1 focus:ring-2 focus:ring-orange-500"
+            type="date"
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <label className="col-span-1">Gate Pass Number</label>
+          <input
+            value={getPass}
+            onChange={(e) => setGetePass(e.target.value)}
+            className="focus:outline-none border-[1px] border-gray-400 col-span-1 focus:ring-2 focus:ring-orange-500"
+            type="number"
+          />
+        </div>
         <div className="grid grid-cols-2 gap-2">
           <label className="col-span-1">Griege Amount</label>
           <input

@@ -45,9 +45,14 @@ const createLot = async (req, res) => {
 const deliveryFabric = async (req, res) => {
   try {
     const { id } = req.params;
-    const { fabricAmount, thanQty } = req.body;
+    const { date, getPass, fabricAmount, thanQty } = req.body;
     const findLot = await Lot.findOne({ _id: id });
-    const newDelivery = { fabricAmount, thanQty }; // Assuming proper schema validation
+    const newDelivery = {
+      date: new Date(date).toLocaleDateString(),
+      getPass,
+      fabricAmount,
+      thanQty,
+    }; // Assuming proper schema validation
     findLot.deliveryFabrics.push(newDelivery);
 
     await findLot.save();
