@@ -16,7 +16,7 @@ function Dashboard() {
   const location = useLocation()
   const [lot, setLot] = useState([])
   const [collectDemand, setCollectDemand] = useState([])
-  const [dyeing,setDyeing]=useState('')
+  
 
 
   const date = new Date()
@@ -90,14 +90,7 @@ useEffect(() => {
                     <li className='col-span-2'>{party.partyName}</li>
                     <li className='col-span-1'>{party.totalThan}</li>
                     <li className='col-span-1'>{party.totalFabrics}</li>
-                    {collectDemand.map(dye=>{
-                    if(party.lotNumber===dye.lotNumber){
-                     const totalDyeing =['']
-                      totalDyeing.push(dye.dayingAmout)
-                      setDyeing(totalDyeing.reduce((acc,currentValue)=>acc+currentValue,0))
-                    }
-                    })}
-                    <li classNamr='col-span-1'>{dyeing}</li>
+                    <li classNamr='col-span-1'>{0}</li>
                     <li className='col-span-1'>{party.deliveryFabrics.reduce((total,amount)=>total+amount.fabricAmount,0)}</li>
                     <li className='col-span-1'>{party.totalFabrics-party.deliverFabrics}</li>
                     <li className='col-span-1'>{party.totalfabrics}</li>
