@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 function DeliveryForm({ id, setDeliveryModal }) {
-  const [fabricAmount, setFabricAmount] = useState('');
-  const [thanQty, setThanQty] = useState('');
+  const [fabricAmount, setFabricAmount] = useState("");
+  const [thanQty, setThanQty] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelivery = async (e) => {
@@ -16,16 +16,19 @@ function DeliveryForm({ id, setDeliveryModal }) {
     }
 
     try {
-      const response = await fetch(`https://hcml-d4nk.vercel.app/api/lot/deliver/${id}`, {
-        method: "POST",
-        body: JSON.stringify({ fabricAmount, thanQty }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        `https://hcml-d4nk.vercel.app/api/lot/deliver/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify({ fabricAmount, thanQty }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       if (response.ok) {
         alert("Delivery successful!");
-        setFabricAmount('');
-        setThanQty('');
+        setFabricAmount("");
+        setThanQty("");
         setDeliveryModal(false);
       } else {
         const errorData = await response.json();

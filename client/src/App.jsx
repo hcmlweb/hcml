@@ -4,7 +4,6 @@ import LotForm from "./components/LotForm";
 import PartyForm from "./components/PartyForm";
 import LotManage from "./components/LotManage";
 import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
 import Color from "./components/Color";
 import AllLots from "./components/grieges/AllLots";
 import DeliveryLots from "./components/grieges/DeliveryLots";
