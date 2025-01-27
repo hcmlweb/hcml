@@ -89,9 +89,14 @@ useEffect(() => {
                     <li className='col-span-2'>{party.partyName}</li>
                     <li className='col-span-1'>{party.totalThan}</li>
                     <li className='col-span-1'>{party.totalFabrics}</li>
-                    <li className='col-span-1'>{party.deliveryFabrics.reduce((total,amount)=>total+amount.fabricAmount,0)}</li>
+                    {collectDemand.map(dye=>{
+                    if(party.lotNumber ==dye.lotNumber){
+                      return(<li className='col-span-1'>{dye.dayingAmout+=dye.dayingAmout||0}</li>)
+                    }
+                    })}
+                    <li className='col-span-1'>{}</li>
                     
-                    <li className='col-span-1'>{party.deliverFabrics}</li>
+                    <li className='col-span-1'>{party.deliveryFabrics.reduce((total,amount)=>total+amount.fabricAmount,0)}</li>
                     <li className='col-span-1'>{party.totalFabrics-party.deliverFabrics}</li>
                     <li className='col-span-1'>{party.totalfabrics}</li>
                     <li className='col-span-2 py-[2px]'><span className={`${party.lotStatus=="Receive Griege"? "bg-green-500": party.lotStatus=='Delivery Running'? "bg-blue-500" : "bg-orange-500"} px-[6px] py-[2px] rounded-full text-white text-xs`}>{party.lotStatus}</span></li>
