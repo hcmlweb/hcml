@@ -97,11 +97,12 @@ function LotManage() {
                   <li className="col-span-1">Than Quantity</li>
                 </ul>
                 {lot.deliveryFabrics.map((delivery) => {
+                  const deliveryDate = new Date(
+                    delivery.date
+                  ).toLocaleDateString();
                   return (
                     <ul className="grid grid-cols-4 text-center border-[1px] border-gray-400 px-4 py-1">
-                      <li className="col-span-1">
-                        {new Date(delivery.date).toLocaleDateString}
-                      </li>
+                      <li className="col-span-1">{deliveryDate}</li>
                       <li className="col-span-1">{delivery.getPass}</li>
                       <li className="col-span-1">{delivery.fabricAmount}</li>
                       <li className="col-span-1">{delivery.thanQty}</li>
