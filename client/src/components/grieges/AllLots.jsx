@@ -34,7 +34,7 @@ function AllLots() {
             <h3 className="col-span-1">{item.lotNumber}</h3>
             <h3 className="col-span-1">{item.partyName}</h3>
             <h3 className="col-span-1">{item.totalFabrics}</h3>
-            <h3 className="col-span-1">{item.totalReceivedThan}</h3>
+            <h3 className="col-span-1">{item.totalThan}</h3>
             <h3 className="col-span-1">{item.lotStatus}</h3>
           </Link>
         );
