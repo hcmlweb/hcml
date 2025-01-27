@@ -90,12 +90,12 @@ useEffect(() => {
                     <li className='col-span-1'>{party.totalThan}</li>
                     <li className='col-span-1'>{party.totalFabrics}</li>
                     {collectDemand.map(dye=>{
-                    if(party.lotNumber ==dye.lotNumber){
-                      return(<li className='col-span-1'>{dye.dayingAmout+=dye.dayingAmout||0}</li>)
+                    if(party.lotNumber===dye.lotNumber){
+                     const totalDyeing =[]
+                      totalDyeing.push(dye.dayingAmout)
+                      return(<li className='col-span-1'>{totalDyeing.reduce((acc,currentValue)=>acc+currentValue,0)}</li>)
                     }
                     })}
-                    <li className='col-span-1'>{}</li>
-                    
                     <li className='col-span-1'>{party.deliveryFabrics.reduce((total,amount)=>total+amount.fabricAmount,0)}</li>
                     <li className='col-span-1'>{party.totalFabrics-party.deliverFabrics}</li>
                     <li className='col-span-1'>{party.totalfabrics}</li>
