@@ -36,17 +36,6 @@ useEffect(() => {
     .then(data => setCollectDemand(data))
 }, [])
 
-const totalDyingAmounts = (data) => {
-  return data.reduce((acc, item) => {
-    if (!acc[item.lotNumber]) {
-      acc[item.lotNumber] = { lotNumber: item.lotNumber, totalAmount: 0 };
-    }
-    acc[item.lotNumber].totalAmount += item.dayingAmout;
-    return acc;
-  }, {});
-};
-
-const dyeingAmountFind = totalDyingAmounts(collectDemand);
 
 // =================Dying End=================
 
@@ -98,18 +87,14 @@ const dyeingAmountFind = totalDyingAmounts(collectDemand);
                     <li className='col-span-1'>{new Date(party.date).toLocaleDateString()}</li>
                     <li className='col-span-1'>{party.lotNumber}</li>
                     <li className='col-span-2'>{party.partyName}</li>
-                    <li className='col-span-1'>{party.totalReceivedThan}</li>
+                    <li className='col-span-1'>{party.totalThan}</li>
                     <li className='col-span-1'>{party.totalFabrics}</li>
-                    <li className='col-span-1'> {
-                                dyeingAmountFind[party.lotNumber]
-                                  ? dyeingAmountFind[party.lotNumber].totalAmount
-                                  : 0
-                              }</li>
+                    <li className='col-span-1'>{party.deliveryFabrics.reduce((total,amount)=>total+amount.fabricAmount,0)}</li>
                     
                     <li className='col-span-1'>{party.deliverFabrics}</li>
                     <li className='col-span-1'>{party.totalFabrics-party.deliverFabrics}</li>
                     <li className='col-span-1'>{Math.ceil(
-                                ((party.totalFabrics - party.deliverFabrics) *
+                                ((party.totalFabrics - (party.deliveryFabrics.reduce((total,amount)=>total+amount.fabricAmount,0)) *
                                   100) /
                                   party.totalFabrics
                               )}{' '}
