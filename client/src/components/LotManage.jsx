@@ -36,16 +36,7 @@ function LotManage() {
   const handelDeliveryModal = () => {
     setDeliveryModal(true);
   };
-  // const handelDeliver = (e) => {
-  //   e.preventDefault();
-  //   fetch(`https://hcml-d4nk.vercel.app/api/lot/deliver/${id}`, {
-  //     method: "post",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({}),
-  //   });
-  // };
+
   return (
     <div className="p-4">
       {lots.map((lot) => {
@@ -118,6 +109,13 @@ function LotManage() {
                     Total Delivery:{" "}
                     {lot.deliveryFabrics.reduce(
                       (total, amount) => total + amount.fabricAmount,
+                      0
+                    )}
+                  </h3>
+                  <h3 className="text-sm font-semibold px-4 py-1">
+                    Total Than Delivery:{" "}
+                    {lot.deliveryFabrics.reduce(
+                      (total, amount) => total + amount.thanQty,
                       0
                     )}
                   </h3>
