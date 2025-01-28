@@ -54,8 +54,7 @@ const deliveryFabric = async (req, res) => {
       thanQty,
     }; // Assuming proper schema validation
     findLot.deliveryFabrics.push(newDelivery);
-
-    await findLot.save();
+    (findLot.lotStatus = "Partial Deliver"), await findLot.save();
     res.status(201).json(findLot);
   } catch (error) {
     res.status(500).json({ message: error.message || "Internal Error" });
