@@ -46,6 +46,7 @@ function LotManage() {
               <div className="p-4 rounded-lg border-[2px] border-gray-300 uppercase">
                 <h2>Lot Number: {lot.lotNumber}</h2>
                 <h3>Party Name: {lot.partyName}</h3>
+                <h3>Total Griege In: {lot.totalFabrics}</h3>
               </div>
               <div className="w-full flex flex-col space-y-1 item-center justify-center p-4 rounded-lg border-[2px] border-gray-300 uppercase">
                 <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md text-center">

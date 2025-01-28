@@ -114,7 +114,9 @@ function Dashboard() {
                       <li className="col-span-1">{party.totalThan}</li>
                       <li className="col-span-1">{party.totalFabrics}</li>
                       <li className="col-span-1">
-                        {findDyingAmount[party.lotNumber]}
+                        {findDyingAmount[party.lotNumber]
+                          ? findDyingAmount[party.lotNumber]
+                          : 0}
                       </li>
                       <li className="col-span-1">
                         {party.deliveryFabrics.reduce(
