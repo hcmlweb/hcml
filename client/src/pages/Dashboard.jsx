@@ -101,6 +101,7 @@ function Dashboard() {
                 if (collectDate === newDate) {
                   return (
                     <ul
+                      key={party._id}
                       className={`w-full grid grid-cols-12 items-center justify-center text-center text-xs sm:text-sm ${
                         i % 2 ? "bg-gray-200" : "bg-white"
                       }`}
@@ -143,7 +144,7 @@ function Dashboard() {
                           className={`${
                             party.lotStatus == "Receive Griege"
                               ? "bg-green-500"
-                              : party.lotStatus == "Delivery Running"
+                              : party.lotStatus == "Partial Deliver"
                               ? "bg-blue-500"
                               : "bg-orange-500"
                           } px-[6px] py-[2px] rounded-full text-white text-xs`}
@@ -174,6 +175,7 @@ function Dashboard() {
               {collectDemand.map((item, i) => {
                 return (
                   <ul
+                    key={item._id}
                     className={`w-full px-4 py-1 ${
                       i % 2 ? "bg-white" : "bg-gray-300"
                     }  grid grid-cols-8 item-center justify-between capitalized text-xs md:text-sm`}
