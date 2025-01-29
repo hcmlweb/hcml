@@ -4,7 +4,7 @@ const Delivery = require("../model/delivery.model");
 
 const getAllLot = async (req, res) => {
   try {
-    const getLot = await Lot.find().sort({ date: 1 });
+    const getLot = await Lot.find().sort({ date: -1 });
     if (!getLot) {
       res.status(404).json({ massage: "NOT FOUND" });
     }
