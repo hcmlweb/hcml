@@ -28,7 +28,7 @@ function AllLots() {
           <Link
             to={`${item._id}`}
             key={item._id}
-            className="text-sm grid grid-cols-6 p-4  border-[1px] border-gray-300 rounded-lg hover:shadow-md"
+            className="text-sm grid grid-cols-6 p-4  border-[1px] border-gray-300 rounded-lg hover:shadow-md capitalize"
           >
             <h3 className="col-span-1">{lotDate}</h3>
             <h3 className="col-span-1">{item.lotNumber}</h3>
