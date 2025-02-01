@@ -42,6 +42,12 @@ const SideBar = ({ setToggle, toggle }) => {
             Daying
           </NavLink>
           <NavLink
+            to="/mechanical"
+            className="transitio-all duration-500 active:border-b-[1px] border-blue-500 py-1 px-2 hover:shadow-blue-500 shadow-sm"
+          >
+            Mechanical
+          </NavLink>
+          <NavLink
             to="/expense"
             className="transitio-all duration-500 active:border-b-[1px] border-blue-500 py-1 px-2 hover:shadow-blue-500 shadow-sm"
           >

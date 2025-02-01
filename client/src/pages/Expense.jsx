@@ -8,7 +8,11 @@ function Expense() {
           Expense
         </h2>
       </div>
-      <div className=""></div>
+      <div className="w-full">
+        <div className="w-full p-4 shadow-md mt-4">
+          <ul></ul>
+        </div>
+      </div>
     </div>
   );
 }

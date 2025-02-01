@@ -9,6 +9,7 @@ import AllLots from "./components/grieges/AllLots";
 import DeliveryLots from "./components/grieges/DeliveryLots";
 import CloseLots from "./components/grieges/CloseLots";
 import Expense from "./pages/Expense";
+import Mechanical from "./components/mechanical/Mechanical";
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
           <Route path="/party" element={<PartyForm />} />
           <Route path="/lot/:id" element={<LotManage />} />
           <Route path="/color" element={<Color />} />
+          <Route path="/mechanical" element={<Mechanical />} />
           <Route path="/expense" element={<Expense />} />
         </Route>
       </Routes>
