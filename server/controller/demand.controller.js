@@ -13,7 +13,6 @@ const getAllDemand = async (req, res) => {
 }
 
 const createDemand = async (req, res) => {
-
     try {
         const {
             demands,
@@ -26,15 +25,17 @@ const createDemand = async (req, res) => {
             masterName,
         } = req.body;
 
-        
-        
-        for (let item of demands) {
-            const color = await Color.findOne({ colorName: item.colorName })
+        await Promise.all(demands.map(async (item) => {
+            const color = await Color.findOne({ colorName: item.colorName });
             if (color) {
-                color.colorQty -= item.colorQty
-                await color.save()
+                if (color.colorQty >= item.colorQty) {
+                    color.colorQty -= item.colorQty;
+                    await color.save();
+                } else {
+                    throw new Error(`Not enough stock for ${item.colorName}`);
+                }
             }
-        }
+        }));
 
         const colorDemand = new Demand({
             demands,
@@ -45,17 +46,21 @@ const createDemand = async (req, res) => {
             disignName,
             disignColor,
             masterName,
-        })
-        const updateLotStatus= await Lot.findOne({lotNumber:lotNumber})
-        updateLotStatus.lotStatus="Dyeing"
-        await updateLotStatus.save()
-        const saveDemand = await colorDemand.save()
+        });
 
-        res.status(201).json(saveDemand)
+        const updateLotStatus = await Lot.findOne({ lotNumber: lotNumber });
+        if (updateLotStatus) {
+            updateLotStatus.lotStatus = "Dyeing";
+            await updateLotStatus.save();
+        }
+
+        const saveDemand = await colorDemand.save();
+        res.status(201).json(saveDemand);
+
     } catch (error) {
-        res.status(404).json({ massage: "Not Found" })
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
-}
-
+};
 
 module.exports = { getAllDemand, createDemand }
