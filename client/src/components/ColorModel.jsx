@@ -8,18 +8,20 @@ const ColorModel = ({ setVisible }) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const colorCode = colorCodeFind.length > 0 ? Math.max(...colorCodeFind) + 1 : 1;
-
     useEffect(() => {
         fetch('https://hcml-d4nk.vercel.app/api/dcolor')
             .then(res => res.json())
-            .then(data => seData(data))
+            .then(data => setData(data))
             .catch(err => console.error('Error fetching colors:', err));
     }, []);
 
     useEffect(() => {
-        setColorCodeFind(data.map(color => color.colorCode));
+        if (data.length > 0) {
+            setColorCodeFind(data.map(color => color.colorCode));
+        }
     }, [data]);
+
+    const colorCode = colorCodeFind.length > 0 ? Math.max(...colorCodeFind) + 1 : 1;
 
     const handelCloseModal = () => {
         setVisible(false);
@@ -35,6 +37,7 @@ const ColorModel = ({ setVisible }) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ colorName, colorQty, colorCode })
             });
+
             setColorName('');
             setColorQty('');
             handelCloseModal();
