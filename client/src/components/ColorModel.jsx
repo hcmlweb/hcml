@@ -1,15 +1,27 @@
 import { useState } from "react"
 import Spinner from "./Spinner"
+//file edited
 
 
 
 const ColorModel = ({ setVisible }) => {
     const [colorName, setColorName] = useState('')
     const [colorQty, setColorQty] = useState('')
+    const [colorCodeFind,setColorCodeFind]=useState([])
+    const [data,seData]=useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const colorCode=Math.max(...colorCodeFind)+1
 
-
-
+  useEffect(()=>{
+      fetch('https://hcml-d4nk.vercel.app/api/dcolor')
+     . then(res=>{
+         return res.json()
+     })
+.then(data=>setData(data))
+  },[])
+useEffect(()=>{
+    data.map(color=>setColorCodeFind(color.colorCode))
+},[])
     const handelCloseModal = () => {
         setVisible(false)
     }
@@ -21,7 +33,7 @@ const ColorModel = ({ setVisible }) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ colorName, colorQty })
+            body: JSON.stringify({ colorName, colorQty, colorCode })
         })
         setColorName('')
         setColorQty('')
@@ -41,6 +53,7 @@ const ColorModel = ({ setVisible }) => {
                     <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md">Add New Color</h2>
                     <div className="w-full grid gris-cols-1 space-y-2">
                         <div className="grid grid-cols-3">
+                            <h2 className="col-span-1"> Color Code: {colorCode}</h2>
                             <h2 className="col-span-1">Color Name</h2>
                             <input type="text" className="col-span-2 focus:outline-none border-[2px] border-gray-800" onChange={(e) => { setColorName(e.target.value) }} />
                         </div>
