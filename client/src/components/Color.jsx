@@ -47,6 +47,7 @@ function Color() {
                 {colors.map(color => {
                     return (
                         <div className='col-span-1 border flex flex-col item-center justify-center border-orange-500 p-2' key={color._id}>
+                            <h2>{color.colorCode}</h2>
                             <h2>{color.colorName}</h2>
                             <div className='grid grid-cols-2'>
                                 <span className="col-span-1">Available Stock</span>
