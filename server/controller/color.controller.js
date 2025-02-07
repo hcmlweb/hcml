@@ -11,8 +11,7 @@ const getAllColor = async (req, res) => {
 
 const createNewColor = async (req, res) => {
   try {
-    const { colorName, colorQty } = req.body;
-
+    const { colorName, colorQty, colorCode} = req.body;
     const newColor = new Color({
       colorName,
       colorQty,
