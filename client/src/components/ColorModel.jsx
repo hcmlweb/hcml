@@ -14,13 +14,11 @@ const ColorModel = ({ setVisible }) => {
 
   useEffect(()=>{
       fetch('https://hcml-d4nk.vercel.app/api/dcolor')
-     . then(res=>{
-         return res.json()
-     })
-.then(data=>setData(data))
+     .then(res=>res.json())
+          .then(data=>setData(data))
   },[])
 useEffect(()=>{
-    data.map(color=>setColorCodeFind(color.colorCode))
+    data.map(color=>setColorCodeFind(...colorCodeFind + color.colorCode))
 },[])
     const handelCloseModal = () => {
         setVisible(false)
@@ -53,6 +51,7 @@ useEffect(()=>{
                     <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md">Add New Color</h2>
                     <div className="w-full grid gris-cols-1 space-y-2">
                         <div className="grid grid-cols-3">
+                            <span>{colorCodeFind}</span>
                             <h2 className="col-span-1"> Color Code: {colorCode}</h2>
                             <h2 className="col-span-1">Color Name</h2>
                             <input type="text" className="col-span-2 focus:outline-none border-[2px] border-gray-800" onChange={(e) => { setColorName(e.target.value) }} />
