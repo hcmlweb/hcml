@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { IoCloseOutline } from "react-icons/io5";
 
 const DemandForm = ({ setVisibleDemand }) => {
     const [data, setData] = useState([]);
@@ -16,7 +15,7 @@ const DemandForm = ({ setVisibleDemand }) => {
     const [demands, setDemands] = useState([
         {
             colorName: '',
-            colorCode: '',  // নতুন প্রপার্টি
+            colorCode: '',  
             colorQty: ''
         }
     ]);
@@ -42,12 +41,20 @@ const DemandForm = ({ setVisibleDemand }) => {
     }, [lotNumber, lot]);
 
     const handleInputChange = (index, event) => {
+        const { name, value } = event.target;
         const values = [...demands];
-        if (event.target.name === "colorName") {
-            const selectedColor = data.find(item => item.colorName === event.target.value);
-            values[index].colorCode = selectedColor ? selectedColor.colorCode : ''; // কালার কোড সেট
+
+        if (name === "colorName") {
+            const selectedColor = data.find(item => item.colorName === value);
+            values[index] = {
+                ...values[index],
+                colorName: value,
+                colorCode: selectedColor ? selectedColor.colorCode : '' // কালার কোড সেট করা
+            };
+        } else {
+            values[index][name] = value;
         }
-        values[index][event.target.name] = event.target.value;
+
         setDemands(values);
     };
 
@@ -108,35 +115,6 @@ const DemandForm = ({ setVisibleDemand }) => {
                     <label>Available Griege For Dying</label>
                     <p className="border-[1px] border-blue-500 shadow-md">{availableGriege}</p>
                 </div>
-                <div className="grid grid-cols-2">
-                    <label>Enter Amount For Dying</label>
-                    <input type="number" className="border-[1px] border-gray-800 px-1"
-                        onChange={(e) => setDayingAmount(e.target.value)} />
-                </div>
-                <div className="grid grid-cols-2">
-                    <label>Enter A Design</label>
-                    <input type="text" className="border-[1px] border-gray-800 px-1"
-                        onChange={(e) => setDesignName(e.target.value)} />
-                </div>
-                <div className="grid grid-cols-2">
-                    <label>Select Color for Dying</label>
-                    <select className="border-[1px] border-gray-800 px-1"
-                        onChange={(e) => setDesignColor(e.target.value)}>
-                        <option>Red</option>
-                        <option>Blue</option>
-                        <option>Green</option>
-                    </select>
-                </div>
-                <div className="grid grid-cols-2">
-                    <label>Select Master</label>
-                    <select className="border-[1px] border-gray-800 px-1 uppercase"
-                        onChange={(e) => setMasterName(e.target.value || "Monayem")}>
-                        <option>--Select Master--</option>
-                        <option>Monayem</option>
-                        <option>Munna</option>
-                        <option>Hakim</option>
-                    </select>
-                </div>
             </div>
             {demands.map((demand, index) => (
                 <div key={index} className="grid grid-cols-1 sm:grid-cols-4 sm:gap-8 px-2 sm:px-8">
@@ -146,13 +124,15 @@ const DemandForm = ({ setVisibleDemand }) => {
                         value={demand.colorName}
                         onChange={(event) => handleInputChange(index, event)}
                     >
-                        <option>--Select One--</option>
+                        <option value="">--Select One--</option>
                         {data.map(item => (
                             <option key={item._id} value={item.colorName}>
                                 {item.colorName} ({item.colorCode})
                             </option>
                         ))}
                     </select>
+                    <label className="col-span-1">Selected Color Code</label>
+                    <p className="col-span-1 border-[1px] border-gray-800 px-4 py-2">{demand.colorCode || "N/A"}</p>
                     <label className="col-span-1">Enter Amount</label>
                     <input className="col-span-1 border-[1px] border-gray-800 my-1 px-4"
                         name="colorQty"
