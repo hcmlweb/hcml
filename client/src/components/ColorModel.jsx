@@ -66,7 +66,7 @@ const ColorModel = ({ setVisible }) => {
           <div className="w-full grid gris-cols-1 space-y-2">
             <div className="grid grid-cols-3">
               <h2 className="col-span-1">Color Code</h2>
-              <span className="col-span-1">{colorCode}</span>
+              <span className="col-span-1">{`HCML-${colorCode}`}</span>
             </div>
             <div className="grid grid-cols-3">
               <h2 className="col-span-1">Color Name</h2>
