@@ -26,7 +26,7 @@ const createDemand = async (req, res) => {
 
     await Promise.all(
       demands.map(async (item) => {
-        const color = await Color.findOne({ colorName: item.colorName });
+        const color = await Color.findOne({ colorCode: item.colorCode });
         if (color) {
           if (color.colorQty >= item.colorQty) {
             color.colorQty -= item.colorQty;
