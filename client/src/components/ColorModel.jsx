@@ -15,7 +15,7 @@ const DemandForm = ({ setVisibleDemand }) => {
     const [demands, setDemands] = useState([
         {
             colorName: '',
-            colorCode: '',  
+            colorCode: '',
             colorQty: ''
         }
     ]);
@@ -24,7 +24,7 @@ const DemandForm = ({ setVisibleDemand }) => {
         fetch('https://hcml-d4nk.vercel.app/api/dcolor')
             .then(res => res.json())
             .then(data => {
-                console.log("Colors Data:", data); // Check API response
+                console.log("Colors Data:", data); // Debugging API response
                 setData(data);
             })
             .catch(err => console.error("Color API Error:", err));
@@ -97,30 +97,6 @@ const DemandForm = ({ setVisibleDemand }) => {
         <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center justify-center py-4">
                 <h2 className="px-4 py-2 text-sm border-[1px] rounded-md shadow-md border-orange-600">Dying Demand Form</h2>
-            </div>
-            <div className="w-full grid grid-cols-1 gap-2 md:grid-cols-2 p-4 border-b-[4px] border-black border-double">
-                <div className="w-full grid grid-cols-2">
-                    <label>Enter Memo Number</label>
-                    <input type="text" className="border-[1px] border-gray-800 px-1"
-                        onChange={(e) => setMemoNumber(e.target.value)} />
-                </div>
-                <div className="grid grid-cols-2">
-                    <label>Select Lot Number</label>
-                    <select className="border-[1px] border-gray-800 px-1" onChange={(e) => setLotNumber(e.target.value)}>
-                        <option>--Select Lot--</option>
-                        {lot.map(item => (
-                            <option key={item._id}>{item.lotNumber}</option>
-                        ))}
-                    </select>
-                </div>
-                <div className="grid grid-cols-2">
-                    <label>Party Name</label>
-                    <p className="border-[1px] border-blue-500 shadow-md">{partyName}</p>
-                </div>
-                <div className="grid grid-cols-2">
-                    <label>Available Griege For Dying</label>
-                    <p className="border-[1px] border-blue-500 shadow-md">{availableGriege}</p>
-                </div>
             </div>
             {demands.map((demand, index) => (
                 <div key={index} className="grid grid-cols-1 sm:grid-cols-4 sm:gap-8 px-2 sm:px-8">
