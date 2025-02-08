@@ -127,12 +127,14 @@ const DemandForm = ({ setVisibleDemand }) => {
                         <option value="">--Select One--</option>
                         {data.map(item => (
                             <option key={item._id} value={item.colorName}>
-                                {item.colorName} ({item.colorCode})
+                                {item.colorName} ({item.colorCode}) {/* কালার কোড দেখানো */}
                             </option>
                         ))}
                     </select>
                     <label className="col-span-1">Selected Color Code</label>
-                    <p className="col-span-1 border-[1px] border-gray-800 px-4 py-2">{demand.colorCode || "N/A"}</p>
+                    <p className="col-span-1 border-[1px] border-gray-800 px-4 py-2">
+                        {demand.colorCode || "N/A"}
+                    </p>
                     <label className="col-span-1">Enter Amount</label>
                     <input className="col-span-1 border-[1px] border-gray-800 my-1 px-4"
                         name="colorQty"
