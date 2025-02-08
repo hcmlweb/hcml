@@ -1,99 +1,173 @@
-import { useState, useEffect } from "react";
-import Spinner from "./Spinner";
+import { useEffect, useState } from "react";
+import { IoCloseOutline } from "react-icons/io5";
 
-const ColorModel = ({ setVisible }) => {
-  const [colorName, setColorName] = useState("");
-  const [colorQty, setColorQty] = useState("");
-  const [colorCodeFind, setColorCodeFind] = useState([]);
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+const DemandForm = ({ setVisibleDemand }) => {
+    const [data, setData] = useState([]);
+    const [lot, setLot] = useState([]);
+    const [lotNumber, setLotNumber] = useState('');
+    const [memoNumber, setMemoNumber] = useState('');
+    const [partyName, setPartyName] = useState('');
+    const [availableGriege, setAvailableGriege] = useState('');
+    const [dayingAmount, setDayingAmount] = useState('');
+    const [designName, setDesignName] = useState('');
+    const [designColor, setDesignColor] = useState('');
+    const [masterName, setMasterName] = useState('');
 
-  useEffect(() => {
-    fetch("https://hcml-d4nk.vercel.app/api/dcolor")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.error("Error fetching colors:", err));
-  }, []);
+    const [demands, setDemands] = useState([
+        {
+            colorName: '',
+            colorCode: '',  // নতুন প্রপার্টি
+            colorQty: ''
+        }
+    ]);
 
-  useEffect(() => {
-    if (data.length > 0) {
-      setColorCodeFind(data.map((color) => color.colorCode));
-    }
-  }, [data]);
+    useEffect(() => {
+        fetch('https://hcml-d4nk.vercel.app/api/dcolor')
+            .then(res => res.json())
+            .then(data => setData(data));
+    }, []);
 
-  const colorCode =
-    colorCodeFind.length > 0 ? Math.max(...colorCodeFind) + 1 : 1;
+    useEffect(() => {
+        fetch('https://hcml-d4nk.vercel.app/api/lot')
+            .then(res => res.json())
+            .then(lot => setLot(lot));
+    }, []);
 
-  const handelCloseModal = () => {
-    setVisible(false);
-  };
+    useEffect(() => {
+        const selectedLot = lot.find(item => item.lotNumber === lotNumber);
+        if (selectedLot) {
+            setAvailableGriege(selectedLot.totalFabrics);
+            setPartyName(selectedLot.partyName);
+        }
+    }, [lotNumber, lot]);
 
-  const handeAddColor = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+    const handleInputChange = (index, event) => {
+        const values = [...demands];
+        if (event.target.name === "colorName") {
+            const selectedColor = data.find(item => item.colorName === event.target.value);
+            values[index].colorCode = selectedColor ? selectedColor.colorCode : ''; // কালার কোড সেট
+        }
+        values[index][event.target.name] = event.target.value;
+        setDemands(values);
+    };
 
-    try {
-      await fetch("https://hcml-d4nk.vercel.app/api/dcolor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ colorName, colorQty, colorCode }),
-      });
+    const handleAddFields = () => {
+        setDemands([...demands, { colorName: '', colorCode: '', colorQty: '' }]);
+    };
 
-      setColorName("");
-      setColorQty("");
-      handelCloseModal();
-    } catch (error) {
-      console.error("Error adding color:", error);
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await fetch('https://hcml-d4nk.vercel.app/api/demand', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    demands,
+                    memoNumber,
+                    lotNumber,
+                    partyName,
+                    dayingAmount,
+                    designName,
+                    designColor,
+                    masterName
+                })
+            });
+            setVisibleDemand(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    setIsLoading(false);
-  };
-
-  return (
-    <>
-      {isLoading ? (
-        <div className="absolute top-0 bottom-0 left-0 right-0 bg-opacity-30 bg-sky-500">
-          <Spinner />
-        </div>
-      ) : (
-        <form
-          className="w-full flex flex-col space-y-2 items-center justify-center"
-          onSubmit={handeAddColor}
-        >
-          <h2 className="border-[1px] border-blue-500 py-2 px-4 rounded-md text-sm font-semibold shadow-md">
-            Add New Color
-          </h2>
-          <div className="w-full grid gris-cols-1 space-y-2">
-            <div className="grid grid-cols-3">
-              <h2 className="col-span-1">Color Code</h2>
-              <span className="col-span-1">{`HCML-${colorCode}`}</span>
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="flex flex-col items-center justify-center py-4">
+                <h2 className="px-4 py-2 text-sm border-[1px] rounded-md shadow-md border-orange-600">Dying Demand Form</h2>
             </div>
-            <div className="grid grid-cols-3">
-              <h2 className="col-span-1">Color Name</h2>
-              <input
-                type="text"
-                value={colorName}
-                className="col-span-2 focus:outline-none border-[2px] border-gray-800"
-                onChange={(e) => setColorName(e.target.value)}
-              />
+            <div className="w-full grid grid-cols-1 gap-2 md:grid-cols-2 p-4 border-b-[4px] border-black border-double">
+                <div className="w-full grid grid-cols-2">
+                    <label>Enter Memo Number</label>
+                    <input type="text" className="border-[1px] border-gray-800 px-1"
+                        onChange={(e) => setMemoNumber(e.target.value)} />
+                </div>
+                <div className="grid grid-cols-2">
+                    <label>Select Lot Number</label>
+                    <select className="border-[1px] border-gray-800 px-1" onChange={(e) => setLotNumber(e.target.value)}>
+                        <option>--Select Lot--</option>
+                        {lot.map(item => (
+                            <option key={item._id}>{item.lotNumber}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="grid grid-cols-2">
+                    <label>Party Name</label>
+                    <p className="border-[1px] border-blue-500 shadow-md">{partyName}</p>
+                </div>
+                <div className="grid grid-cols-2">
+                    <label>Available Griege For Dying</label>
+                    <p className="border-[1px] border-blue-500 shadow-md">{availableGriege}</p>
+                </div>
+                <div className="grid grid-cols-2">
+                    <label>Enter Amount For Dying</label>
+                    <input type="number" className="border-[1px] border-gray-800 px-1"
+                        onChange={(e) => setDayingAmount(e.target.value)} />
+                </div>
+                <div className="grid grid-cols-2">
+                    <label>Enter A Design</label>
+                    <input type="text" className="border-[1px] border-gray-800 px-1"
+                        onChange={(e) => setDesignName(e.target.value)} />
+                </div>
+                <div className="grid grid-cols-2">
+                    <label>Select Color for Dying</label>
+                    <select className="border-[1px] border-gray-800 px-1"
+                        onChange={(e) => setDesignColor(e.target.value)}>
+                        <option>Red</option>
+                        <option>Blue</option>
+                        <option>Green</option>
+                    </select>
+                </div>
+                <div className="grid grid-cols-2">
+                    <label>Select Master</label>
+                    <select className="border-[1px] border-gray-800 px-1 uppercase"
+                        onChange={(e) => setMasterName(e.target.value || "Monayem")}>
+                        <option>--Select Master--</option>
+                        <option>Monayem</option>
+                        <option>Munna</option>
+                        <option>Hakim</option>
+                    </select>
+                </div>
             </div>
-            <div className="grid grid-cols-3">
-              <h2 className="col-span-1">Color Quantity</h2>
-              <input
-                type="number"
-                value={colorQty}
-                className="col-span-2 focus:outline-none border-[2px] border-gray-800"
-                onChange={(e) => setColorQty(e.target.value)}
-              />
+            {demands.map((demand, index) => (
+                <div key={index} className="grid grid-cols-1 sm:grid-cols-4 sm:gap-8 px-2 sm:px-8">
+                    <label className="col-span-1 py-2">Color {index + 1}</label>
+                    <select className="col-span-1 border-[1px] border-gray-800 my-1"
+                        name="colorName"
+                        value={demand.colorName}
+                        onChange={(event) => handleInputChange(index, event)}
+                    >
+                        <option>--Select One--</option>
+                        {data.map(item => (
+                            <option key={item._id} value={item.colorName}>
+                                {item.colorName} ({item.colorCode})
+                            </option>
+                        ))}
+                    </select>
+                    <label className="col-span-1">Enter Amount</label>
+                    <input className="col-span-1 border-[1px] border-gray-800 my-1 px-4"
+                        name="colorQty"
+                        placeholder="Amount"
+                        value={demand.colorQty}
+                        onChange={(event) => handleInputChange(index, event)}
+                    />
+                </div>
+            ))}
+            <div className="flex flex-row items-start justify-start space-x-2 py-4">
+                <button type="button" onClick={handleAddFields} className="px-4 py-2 bg-blue-500 text-white shadow-md rounded-md hover:bg-blue-600">Add More</button>
+                <button type="submit" className="px-4 py-2 bg-orange-500 text-white shadow-md rounded-md hover:bg-orange-600">Submit</button>
             </div>
-            <button className="px-4 py-2 text-white bg-rose-700 text-sm rounded-sm shadow-md">
-              Add Color
-            </button>
-          </div>
         </form>
-      )}
-    </>
-  );
+    );
 };
 
-export default ColorModel;
+export default DemandForm;
