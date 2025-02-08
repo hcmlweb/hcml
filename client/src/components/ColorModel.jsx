@@ -23,13 +23,18 @@ const DemandForm = ({ setVisibleDemand }) => {
     useEffect(() => {
         fetch('https://hcml-d4nk.vercel.app/api/dcolor')
             .then(res => res.json())
-            .then(data => setData(data));
+            .then(data => {
+                console.log("Colors Data:", data); // Check API response
+                setData(data);
+            })
+            .catch(err => console.error("Color API Error:", err));
     }, []);
 
     useEffect(() => {
         fetch('https://hcml-d4nk.vercel.app/api/lot')
             .then(res => res.json())
-            .then(lot => setLot(lot));
+            .then(lot => setLot(lot))
+            .catch(err => console.error("Lot API Error:", err));
     }, []);
 
     useEffect(() => {
@@ -56,6 +61,7 @@ const DemandForm = ({ setVisibleDemand }) => {
         }
 
         setDemands(values);
+        console.log("Updated Demands:", values); // Debugging
     };
 
     const handleAddFields = () => {
@@ -125,11 +131,15 @@ const DemandForm = ({ setVisibleDemand }) => {
                         onChange={(event) => handleInputChange(index, event)}
                     >
                         <option value="">--Select One--</option>
-                        {data.map(item => (
-                            <option key={item._id} value={item.colorName}>
-                                {item.colorName} ({item.colorCode}) {/* কালার কোড দেখানো */}
-                            </option>
-                        ))}
+                        {data.length > 0 ? (
+                            data.map(item => (
+                                <option key={item._id} value={item.colorName}>
+                                    {item.colorName} ({item.colorCode}) {/* কালার কোড দেখানো */}
+                                </option>
+                            ))
+                        ) : (
+                            <option disabled>Loading...</option>
+                        )}
                     </select>
                     <label className="col-span-1">Selected Color Code</label>
                     <p className="col-span-1 border-[1px] border-gray-800 px-4 py-2">
