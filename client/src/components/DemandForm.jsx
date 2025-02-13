@@ -141,9 +141,35 @@ const DemandForm = ({ setVisibleDemand }) => {
         </div>
         <div className="grid grid-cols-2">
           <label>Dying Amount</label>
-          <p className="border-[1px] border-blue-500 shadow-md">
-            {item.totalFabrics}
-          </p>
+          <input
+            type="number"
+            className="border-[1px] border-gray-500 shadow-md"
+            onChange={(e) => setDayingAmount(e.target.value)}
+          />
+        </div>
+        <div className="grid grid-cols-2">
+          <label>Design Name</label>
+          <input
+            type="Text"
+            className="border-[1px] border-gray-500 shadow-md"
+            onChange={(e) => setDesignName(e.target.value)}
+          />
+        </div>
+        <div className="grid grid-cols-2">
+          <label>Design Color</label>
+          <input
+            type="Text"
+            className="border-[1px] border-gray-500 shadow-md"
+            onChange={(e) => setDesignColor(e.target.value)}
+          />
+        </div>
+        <div className="grid grid-cols-2">
+          <label>Master Name</label>
+          <input
+            type="Text"
+            className="border-[1px] border-gray-500 shadow-md"
+            onChange={(e) => setMasterName(e.target.value)}
+          />
         </div>
       </div>
       {demands.map((demand, index) => (
@@ -165,10 +191,6 @@ const DemandForm = ({ setVisibleDemand }) => {
               </option>
             ))}
           </select>
-          <label className="col-span-1">Selected Color Code</label>
-          <p className="col-span-1 border-[1px] border-gray-800 px-4 py-2">
-            {demand.colorCode || "N/A"}
-          </p>
           <label className="col-span-1">Enter Amount</label>
           <input
             className="col-span-1 border-[1px] border-gray-800 my-1 px-4"
