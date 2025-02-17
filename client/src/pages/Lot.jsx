@@ -87,6 +87,16 @@ const Lot = () => {
               >
                 Close Lots
               </NavLink>
+              <NavLink
+                to="paking-list"
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-gray-400 px-4 py-1 rounded-t-md text-sm font-mono"
+                    : "bg-gray-300 px-4 py-1 rounded-t-md text-sm font-mono"
+                }
+              >
+                Paking List
+              </NavLink>
             </div>
             <div className="flex flex-row items-center justify-center space-x-1">
               <button

@@ -33,7 +33,7 @@ const DemandForm = ({ setVisibleDemand }) => {
   }, []);
 
   useEffect(() => {
-    const selectedLot = lot.find((item) => item.lotNumber === lotNumber);
+    const selectedLot = lot.find((item) => item.lotNumber == lotNumber);
     if (selectedLot) {
       setAvailableGriege(selectedLot.totalFabrics);
       setPartyName(selectedLot.partyName);
@@ -120,7 +120,10 @@ const DemandForm = ({ setVisibleDemand }) => {
           {lot.map((item) => {
             if (item.lotNumber == lotNumber) {
               return (
-                <p className="border-[1px] border-blue-500 shadow-md">
+                <p
+                  className="border-[1px] border-blue-500 shadow-md"
+                  onChange={(e) => setPartyName(e.target.value)}
+                >
                   {item.partyName}
                 </p>
               );
