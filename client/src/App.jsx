@@ -10,7 +10,7 @@ import DeliveryLots from "./components/grieges/DeliveryLots";
 import CloseLots from "./components/grieges/CloseLots";
 import Expense from "./pages/Expense";
 import Mechanical from "./components/mechanical/Mechanical";
-import TableContainer from "./components/table/TableContainer";
+import PakingList from "./components/grieges/PakingList";
 function App() {
   return (
     <>
@@ -21,7 +21,7 @@ function App() {
             <Route path="alllot/:id" element={<LotManage />} />
             <Route path="deliverylots" element={<DeliveryLots />} />
             <Route path="closelots" element={<CloseLots />} />
-            <Route path="paking-list" element={<TableContainer />} />
+            <Route path="paking-list" element={<PakingList />} />
           </Route>
           <Route path="/newlot" element={<LotForm />} />
           <Route path="/party" element={<PartyForm />} />
